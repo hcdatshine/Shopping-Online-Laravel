@@ -32,10 +32,10 @@
                             <p class="single-item-title"><h2>{{$product_detail->name}}</h2></p>
                             <p class="single-item-price">
                                 @if($product_detail->promotion_price!=0)
-                                <span class="flash-del">{{$product_detail->unit_price}}</span>
-                                <span class="flash-sale">{{$product_detail->promotion_price}}</span>
+                                <span class="flash-del">{{ number_format($product_detail->unit_price) }}</span>
+                                <span class="flash-sale">{{ number_format($product_detail->promotion_price)}}đồng</span>
                                 @else
-                                <span class="flash-sale">{{$product_detail->unit_price}}</span>
+                                <span class="flash-sale">{{ number_format($product_detail->unit_price) }}đồng</span>
                                 @endif
                             </p>
                         </div>
@@ -98,10 +98,10 @@
                                         <p class="single-item-title">{{$item->name}}</p>
                                         <p class="single-item-price">
                                             @if($item->promotion_price!=0)
-                                            <span class="flash-del">{{$item->unit_price}}</span>
-                                            <span class="flash-sale">{{$item->promotion_price}}</span>
+                                            <span class="flash-del">{{ number_format($item->unit_price) }}</span>
+                                            <span class="flash-sale">{{ number_format($item->promotion_price) }}đồng</span>
                                             @else
-                                            <span class="flash-sale">{{$item->unit_price}}</span>
+                                            <span class="flash-sale">{{ number_format($item->unit_price) }}đồng</span>
                                             @endif
                                         </p>
                                     </div>

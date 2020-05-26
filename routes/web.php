@@ -42,3 +42,7 @@ Route::get('san-pham/{id}',[
 //     'as'=>'chi-tiet-san-pham',
 //     'uses'=>'PageController@getProductDetail'
 // ]);
+Route::get('tim-kiem',[
+    'as'=>'search',
+    'uses'=>'PageController@getSearch'
+]);

@@ -24,14 +24,16 @@ class PageController extends Controller
         // $product_type=ProductType::where('id',$type)->first();
         
         if($type == 0){
-            $products = Product::where('new',1)->paginate(3);
+            $products = Product::where('new',1)->get();
         } 
         else {
-            $products=Product::where('id_type',$type)->paginate(3);
+            $products=Product::where('id_type',$type)->get();
         }
         $product_type=ProductType::select('name','id')->get();
         $product_type_name = ProductType::select('name')->where('id',$type)->first();
-        return view('page.product_type',compact('products','product_type','product_type_name'));
+        // lấy sản phẩm được mua nhiều nhất theo thứ tự giảm dần
+        $product_best_selling = Product::orderByDesc('solded')->paginate(3);
+        return view('page.product_type',compact('products','product_type','product_type_name','product_best_selling'));
     }
 
     public function getContacts(){
@@ -43,4 +45,6 @@ class PageController extends Controller
         $product_related=Product::where('id_type',$product_detail->id_type)->paginate(3);
         return view('page.product',compact('product_detail','product_related'));
     }
+
+
 }
