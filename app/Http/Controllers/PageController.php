@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Slide;
 use App\Product;
 use App\ProductType;
+use App\Cart;
+use Session;
 
 class PageController extends Controller
 {
@@ -46,5 +48,12 @@ class PageController extends Controller
         return view('page.product',compact('product_detail','product_related'));
     }
 
-
+    public function getAddToCart(Request $req,$id){
+        $product = Product::find($id);
+        $oldCart = Session('cart')?Session::get('cart'):null;
+        $cart = new Cart($oldCart);
+        $cart->add($product,$id);
+        $req->session()->put('cart',$cart);
+        return redirect()->back();
+    }
 }

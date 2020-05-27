@@ -46,3 +46,8 @@ Route::get('tim-kiem',[
     'as'=>'search',
     'uses'=>'PageController@getSearch'
 ]);
+
+Route::get('add-to-cart/{id}',[
+    'as'=>'themgiohang',
+    'uses'=>'PageController@getAddToCart'
+]);
