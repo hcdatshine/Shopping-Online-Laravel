@@ -24,10 +24,20 @@ class Cart
 			}
 		}
 		$giohang['qty']++;
-		$giohang['price'] = $item->unit_price * $giohang['qty'];
+		if($item->promotion_price){
+			$giohang['price'] = $item->promotion_price * $giohang['qty'];
+		} 
+		else {
+			$giohang['price'] = $item->unit_price * $giohang['qty'];
+		}
 		$this->items[$id] = $giohang;
 		$this->totalQty++;
-		$this->totalPrice += $item->unit_price;
+		if($item->promotion_price){
+			$this->totalPrice += $item->promotion_price;
+		}
+		else {
+			$this->totalPrice += $item->unit_price;
+		}
 	}
 	//xóa 1
 	public function reduceByOne($id){

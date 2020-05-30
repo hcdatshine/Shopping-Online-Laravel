@@ -51,3 +51,8 @@ Route::get('add-to-cart/{id}',[
     'as'=>'themgiohang',
     'uses'=>'PageController@getAddToCart'
 ]);
+
+Route::get('delete-cart/{id}',[
+    'as'=>'xoagiohang',
+    'uses'=>'PageController@getDeleteCart'
+]);

@@ -33,9 +33,9 @@
                             <p class="single-item-price">
                                 @if($product_detail->promotion_price!=0)
                                 <span class="flash-del">{{ number_format($product_detail->unit_price) }}</span>
-                                <span class="flash-sale">{{ number_format($product_detail->promotion_price)}}đồng</span>
+                                <span class="flash-sale">{{ number_format($product_detail->promotion_price) }} đồng</span>
                                 @else
-                                <span class="flash-sale">{{ number_format($product_detail->unit_price) }}đồng</span>
+                                <span class="flash-sale">{{ number_format($product_detail->unit_price) }} đồng</span>
                                 @endif
                             </p>
                         </div>
@@ -59,7 +59,7 @@
                                 <option value="4">4</option>
                                 <option value="5">5</option>
                             </select>
-                            <a class="add-to-cart" href="#"><i class="fa fa-shopping-cart"></i></a>
+                            <a class="add-to-cart" href="{{route('themgiohang',$product_detail->id)}}"><i class="fa fa-shopping-cart"></i></a>
                             <div class="clearfix"></div>
                         </div>
                     </div>
@@ -99,15 +99,15 @@
                                         <p class="single-item-price">
                                             @if($item->promotion_price!=0)
                                             <span class="flash-del">{{ number_format($item->unit_price) }}</span>
-                                            <span class="flash-sale">{{ number_format($item->promotion_price) }}đồng</span>
+                                            <span class="flash-sale">{{ number_format($item->promotion_price) }} đồng</span>
                                             @else
-                                            <span class="flash-sale">{{ number_format($item->unit_price) }}đồng</span>
+                                            <span class="flash-sale">{{ number_format($item->unit_price) }} đồng</span>
                                             @endif
                                         </p>
                                     </div>
                                     <div class="single-item-caption">
-                                        <a class="add-to-cart pull-left" href="product.html"><i class="fa fa-shopping-cart"></i></a>
-                                        <a class="beta-btn primary" href="product.html">Details <i class="fa fa-chevron-right"></i></a>
+                                        <a class="add-to-cart pull-left" href="{{route('themgiohang',$item->id)}}"><i class="fa fa-shopping-cart"></i></a>
+                                        <a class="beta-btn primary" href="{{route('sanpham',$item->id)}}">Details <i class="fa fa-chevron-right"></i></a>
                                         <div class="clearfix"></div>
                                     </div>
                                 </div>
@@ -221,7 +221,7 @@
 
 </script>
 <script>
-	 jQuery(document).ready(function($) {
+	jQuery(document).ready(function($) {
                 'use strict';
 
 // color box
@@ -248,6 +248,6 @@
         jQuery(this).addClass('icon-angle-left');
       }
     });
-				});
+	});
 	</script>
 @endsection
