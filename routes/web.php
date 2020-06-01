@@ -69,20 +69,20 @@ Route::post('dat-hang',[
 
 Route::get('dang-nhap',[
     'as'=>'login',
-    'uses'=>'LoginController@getLogin'
+    'uses'=>'PageController@getLogin'
 ]);
 
 Route::post('dang-nhap',[
     'as'=>'login',
-    'uses'=>'LoginController@postLogin'
+    'uses'=>'PageController@postLogin'
 ]);
 
 Route::get('dang-ky',[
     'as'=>'signup',
-    'uses'=>'LoginController@getSignup'
+    'uses'=>'PageController@getSignup'
 ]);
 
 Route::post('dang-ky',[
     'as'=>'signup',
-    'uses'=>'LoginController@postSignup'
+    'uses'=>'PageController@postSignup'
 ]);
