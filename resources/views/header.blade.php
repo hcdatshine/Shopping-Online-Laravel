@@ -1,3 +1,8 @@
+@if(session('thongbao'))
+    <div class="alert alert-success">
+        {{session('thongbao')}}
+    </div>
+@endif
 <div id="header">
     <div class="header-top">
         <div class="container">
@@ -32,9 +37,9 @@
                 </div>
 
                 <div class="beta-comp">
-                    @if(Session::has('cart'))
                     <div class="cart">
-                        <div class="beta-select"><i class="fa fa-shopping-cart"></i> Giỏ hàng ({{Session('cart')->totalQty}}) <i class="fa fa-chevron-down"></i></div>
+                        <div class="beta-select"><i class="fa fa-shopping-cart"></i> Giỏ hàng (@if(Session::has('cart')){{Session('cart')->totalQty}} @else Trống @endif)<i class="fa fa-chevron-down"></i></div>
+                        @if(Session::has('cart'))
                         <div class="beta-dropdown cart-body">
                             @foreach($product_cart as $item)
                             <div class="cart-item">
@@ -52,18 +57,17 @@
                                 </div>
                             </div>
                             @endforeach
-                            <div class="cart-caption">
-                            <div class="cart-total text-right">Tổng tiền: <span class="cart-total-value">{{number_format(Session('cart')->totalPrice)}}</span></div>
+                            <div class="cart-caption"></div>
+                            <div class="cart-total text-right">Tổng tiền: <span class="cart-total-value">{{number_format(Session('cart')->totalPrice)}} đồng</span></div>
                                 <div class="clearfix"></div>
-
                                 <div class="center">
                                     <div class="space10">&nbsp;</div>
-                                    <a href="checkout.html" class="beta-btn primary text-center">Đặt hàng <i class="fa fa-chevron-right"></i></a>
+                                    <a href="{{ route('dathang') }}" class="beta-btn primary text-center">Đặt hàng <i class="fa fa-chevron-right"></i></a>
                                 </div>
                             </div>
+                            @endif
                         </div>
                     </div> <!-- .cart -->
-                    @endif
                 </div>
             </div>
             <div class="clearfix"></div>

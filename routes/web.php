@@ -56,3 +56,33 @@ Route::get('delete-cart/{id}',[
     'as'=>'xoagiohang',
     'uses'=>'PageController@getDeleteCart'
 ]);
+
+Route::get('dat-hang',[
+    'as'=>'dathang',
+    'uses'=>'PageController@getCheckout'
+]);
+
+Route::post('dat-hang',[
+    'as'=>'dathang',
+    'uses'=>'PageController@postCheckout'
+]);
+
+Route::get('dang-nhap',[
+    'as'=>'login',
+    'uses'=>'LoginController@getLogin'
+]);
+
+Route::post('dang-nhap',[
+    'as'=>'login',
+    'uses'=>'LoginController@postLogin'
+]);
+
+Route::get('dang-ky',[
+    'as'=>'signup',
+    'uses'=>'LoginController@getSignup'
+]);
+
+Route::post('dang-ky',[
+    'as'=>'signup',
+    'uses'=>'LoginController@postSignup'
+]);
