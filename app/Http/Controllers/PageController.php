@@ -11,6 +11,9 @@ use Session;
 use App\Customer;
 use App\Bill;
 use App\BillDetail;
+use App\User;
+use Hash;
+use Illuminate\Support\Facades\Auth;
 
 class PageController extends Controller
 {
@@ -113,8 +116,26 @@ class PageController extends Controller
         return view('page.login');
     }
     
-    public function postLogin(){
-
+    public function postLogin(Request $req){
+        $this->validate($req,
+        [
+            'email'=>'required|email',
+            'password'=>'required|min:6|max:25'
+        ],
+        [
+            'email.required'=>'Hãy nhập lại email',
+            'email.email'=>'Email chưa đúng định dạng',
+            'password.required'=>'Hãy nhập lại password',
+            'password.max'=>'Mật khẩu ngắn hơn 25 kí tự',
+            'password.min'=>'Mật khẩu dài hơn 6 kí tự',
+        ]);
+        $user = $req->only('email','password');
+        if(Auth::attempt($user)){
+            return redirect()->route('trangchu')->with('thongbao','Đăng nhập thành công');
+        }
+        else {
+            return redirect()->route('login')->with('thongbao','Đăng nhập không thành công');
+        }
     }
 
     public function getSignup(){
@@ -125,10 +146,10 @@ class PageController extends Controller
         $this->validate($req,
             [
                 'email'=>'required|email|unique:user,email',
-                'password'=>'required|min:6|max|25',
+                'password'=>'required|min:6|max:25',
                 'name'=>'required|max:30',
                 'reset_password'=>'required|same:password',
-                'phone' => 'required|regex:/(01)[0-9]{10}/'
+                'phone' => 'required'
             ],
             [
                 'email.required'=>'Hãy nhập lại email',
@@ -139,7 +160,6 @@ class PageController extends Controller
                 'password.min'=>'Mật khẩu dài hơn 6 kí tự',
                 'name.required'=>'Hãy nhập lại tên',
                 'phone.required'=>'Hãy nhập lại số điện thoại',
-                'phone.regex'=>'Số điện thoại có 10 số',
                 'name.max'=>'Tên ngắn hơn 30 kí tự',
                 'reset_password.required'=>'Hãy Nhập lại mật khẩu',
                 'reset_password.same'=>'Mật khẩu nhập lại không đúng',
@@ -151,8 +171,46 @@ class PageController extends Controller
         $user->phone = $req->phone;
         $user->address = $req->address;
         $user->save();
-        dd($user);
-        return redirect()->back()->with('thongbao','Đăng kí thành công');
+        // dd($user);
+        return redirect()->route('login')->with('thongbao','Đăng kí thành công');
     }
+
+    public function getLogout(){
+        Auth::logout();
+        return redirect()->route('login');
+    }
+    
+    public function getUserInformation(){
+        if(Auth::check()){
+            $user = Auth::user();
+            return view('page.user_information',compact('user'));
+        }
+        else
+            return redirect('dangnhap')->with('thongbao','Bạn chưa Đăng Nhập!');
+    }
+    public function postUserInformation(Request $req){
+        // $this->validate($req,
+        // [
+        //     'password'=>'min:6|max:25',
+        //     'name'=>'required|max:30',
+        //     'reset_password'=>'same:password',
+        //     'phone' => 'required'
+        // ],
+        // [
+        //     'email.required'=>'Hãy nhập lại email',
+        //     'email.email'=>'Email chưa đúng định dạng',
+        //     'email.unique'=>'email đã tồn tại',
+        //     'password.required'=>'Hãy nhập lại password',
+        //     'password.max'=>'Mật khẩu ngắn hơn 25 kí tự',
+        //     'password.min'=>'Mật khẩu dài hơn 6 kí tự',
+        //     'name.required'=>'Hãy nhập lại tên',
+        //     'phone.required'=>'Hãy nhập lại số điện thoại',
+        //     'name.max'=>'Tên ngắn hơn 30 kí tự',
+        //     'reset_password.required'=>'Hãy Nhập lại mật khẩu',
+        //     'reset_password.same'=>'Mật khẩu nhập lại không đúng',
+        // ]);
+
+    }
+
 }
 

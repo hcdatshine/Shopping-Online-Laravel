@@ -13,22 +13,24 @@
         <div class="clearfix"></div>
     </div>
 </div>
-
+@if(count($errors)>0)
+    <div class="alert alert-danger">
+        @foreach ($errors as $errors)
+            {{ $errors }}
+        @endforeach
+    </div>
+@endif
+@if(session('thongbao'))
+    <div class="alert alert-success">
+        {{session('thongbao')}}
+    </div>
+@endif
 <div class="container">
     <div id="content">
-        
         <form action="{{route('signup')}}" method="post" class="beta-form-checkout">
             {{ csrf_field() }}
             <div class="row">
                 <div class="col-sm-3"></div>
-                @if(count($errors)>0)
-                    <div class="alert alert-danger">{{ $errors->first() }}</div>
-                @endif
-                @if(session('thongbao'))
-                    <div class="alert alert-success">
-                        {{session('thongbao')}}
-                    </div>
-                @endif
                 <div class="col-sm-6">
                     <h4>Đăng kí</h4>
                     <div class="space20">&nbsp;</div>

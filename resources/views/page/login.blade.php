@@ -13,25 +13,36 @@
         <div class="clearfix"></div>
     </div>
 </div>
-
+@if(count($errors)>0)
+    <div class="alert alert-danger">
+        @foreach ($errors as $errors)
+            {{ $errors }}
+        @endforeach
+    </div>
+@endif
+@if(session('thongbao'))
+    <div class="alert alert-success">
+        {{session('thongbao')}}
+    </div>
+@endif
 <div class="container">
     <div id="content">
-        
-        <form action="#" method="post" class="beta-form-checkout">
+        <form action="{{route('login')}}" method="post" class="beta-form-checkout">
+            {{ csrf_field() }}
             <div class="row">
                 <div class="col-sm-3"></div>
+
                 <div class="col-sm-6">
                     <h4>Đăng nhập</h4>
                     <div class="space20">&nbsp;</div>
-
-                    
+                
                     <div class="form-block">
                         <label for="email">Email address*</label>
                         <input type="email" name="email" required>
                     </div>
                     <div class="form-block">
                         <label for="phone">Password*</label>
-                        <input type="text" name="password" required>
+                        <input type="password" name="password" required>
                     </div>
                     <div class="form-block">
                         <button type="submit" class="btn btn-primary">Login</button>
