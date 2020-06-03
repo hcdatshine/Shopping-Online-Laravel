@@ -131,7 +131,7 @@ Route::prefix('admin')->group(function() {
     //     Route::get('edit/{id}','AdminProductController@getEdit');
     //     Route::post('edit/{id}','AdminProductController@postEdit')->name('product.edit');
 
-    //     Route::post('add','AdminProductController@postAdd')->name('product.add');
+        Route::post('add','AdminProductController@postAdd')->name('product.add');
 
     //     Route::get('delete/{id}','AdminProductController@Delete')->name('product.delete');
     });

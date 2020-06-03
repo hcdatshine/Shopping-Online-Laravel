@@ -72,16 +72,12 @@
                                   @endif
                                 </td>
                                 
-                                <span class="flash-sale">{{ number_format($item->promotion_price) }} đồng</span>
-                                
-                                <span class="flash-sale">{{ number_format($item->unit_price) }} đồng</span>
-                                
                                 @if($item->promotion_price!=0)
                                 <td>{{ number_format($item ->unit_price) }} đồng</td>
-                                <td>{{ number_format($item ->unit_price) }} đồng</td>
+                                <td>{{ number_format($item ->promotion_price) }} đồng</td>
                                 @else
                                 <td>{{ number_format($item ->unit_price) }} đồng</td>
-                                <td>{{ number_format($item ->promotion_price) }} đồng</td>
+                                <td>{{ number_format($item ->unit_price) }} đồng</td>
                                 @endif
                                 <td>{{ $item->product_type->name }}</td>
                                 <td>
@@ -119,7 +115,7 @@
                       <h4 class="modal-title">Modal Header</h4>
                     </div>
                     <div class="modal-body">
-                        {{-- <form action="{{route('product.add')}}" method="POST" enctype='multipart/form-data'>
+                        <form action="{{route('product.add')}}" method="POST" enctype='multipart/form-data'>
                             {{ csrf_field() }}
                             <div class="form-group">
                                 <label>Product Name</label>
@@ -140,15 +136,15 @@
                                 <br>
                                 <label>Category_id</label><br>
                                 <select name="category_id">
-                                    @foreach ($categories as $item)
+                                    @foreach ($product_type as $item)
                                         <option value="{{ $item->id }}">{{ $item->name }}</option>
                                     @endforeach
-                                </select> --}}
-                                {{-- <input type="text" name="category_id" style="width:100%; height:40px" placeholder="Nhập id category , chỉ nhập số không nhập chữ"> --}}
-                                {{-- <br>
+                                </select>
+                                <input type="text" name="product_type_id" style="width:100%; height:40px" placeholder="Nhập id category , chỉ nhập số không nhập chữ">
+                                <br>
                             </div>
                             <button type="submit" class="btn btn-success"> Submit </button>
-                        </form> --}}
+                        </form>
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

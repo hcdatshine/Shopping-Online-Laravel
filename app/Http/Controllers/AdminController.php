@@ -13,4 +13,8 @@ class AdminController extends Controller
         $product_type = ProductType::select('id','name')->get();
         return view('admin.product.index',compact('products','product_type'));
     }
+
+    public function postAdd(){
+        
+    }
 }

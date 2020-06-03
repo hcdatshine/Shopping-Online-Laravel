@@ -16,14 +16,14 @@
         <li class="header">Dashboard</li>
         {{-- <li class="{{ (\Request::route()->getName() == 'dang-nhap') ? 'active' : '' }}"> --}}
         <li>
-          <a href="{{ route('login') }}">
+          <a href="{{ route('product.index') }}">
             <i class="fa fa-dashboard"></i> <span>Category</span>
           </a>
         </li>
         {{-- </li > --}}
         {{-- <li class="{{ (\Request::route()->getName() == 'dang-nhap') ? 'active' : '' }}"> --}}
         <li>
-          <a href="{{ route('login') }}">
+          <a href="{{ route('product.index') }}">
             <i class="fa fa-dashboard"></i> <span>Product</span>
           </a>
         </li>
