@@ -102,34 +102,37 @@ Route::post('thong-tin-nguoi-dung',[
     'uses'=>'PageController@postUserInformation'
 ]);
 
-//  Admin
-// Route::get('/',function(){
-//     return view('layout.app');
-// });
+//  Backend
+// Route::get('/admin/product',[
+//         'as'=>'adminproduct',
+//         'uses'=>'AdminController@index'
+// ]);
+Route::prefix('admin')->group(function() {
+    Route::get('/',function(){
+        return view('layout.app');
+    });
+    //category
+    // Route::group(['prefix' => 'category'],function() {
+    //     Route::get('/','AdminCategoryController@index')->name('category.index');
+    //     Route::get('/appear/{id}','AdminCategoryController@appear')->name('category.appear');
 
-// Route::prefix('admin')->group(function() {
-//     //category
-//     Route::group(['prefix' => 'category'],function() {
-//         Route::get('/','AdminCategoryController@index')->name('category.index');
-//         Route::get('/appear/{id}','AdminCategoryController@appear')->name('category.appear');
+    //     Route::get('edit/{id}','AdminCategoryController@getEdit');
+    //     Route::post('edit/{id}','AdminCategoryController@postEdit')->name('category.edit');
 
-//         Route::get('edit/{id}','AdminCategoryController@getEdit');
-//         Route::post('edit/{id}','AdminCategoryController@postEdit')->name('category.edit');
+    //     Route::post('add','AdminCategoryController@postAdd')->name('category.add');
 
-//         Route::post('add','AdminCategoryController@postAdd')->name('category.add');
-
-//         Route::get('delete/{id}','AdminCategoryController@Delete')->name('category.delete');
-//     });
+    //     Route::get('delete/{id}','AdminCategoryController@Delete')->name('category.delete');
+    // });
     
-//     //product
-//     Route::group(['prefix' => 'product'],function() {
-//         Route::get('/','AdminProductController@index')->name('product.index');
+    // product
+    Route::group(['prefix' => 'product'],function() {
+        Route::get('/','AdminController@index')->name('product.index');
 
-//         Route::get('edit/{id}','AdminProductController@getEdit');
-//         Route::post('edit/{id}','AdminProductController@postEdit')->name('product.edit');
+    //     Route::get('edit/{id}','AdminProductController@getEdit');
+    //     Route::post('edit/{id}','AdminProductController@postEdit')->name('product.edit');
 
-//         Route::post('add','AdminProductController@postAdd')->name('product.add');
+    //     Route::post('add','AdminProductController@postAdd')->name('product.add');
 
-//         Route::get('delete/{id}','AdminProductController@Delete')->name('product.delete');
-//     });
-// });
+    //     Route::get('delete/{id}','AdminProductController@Delete')->name('product.delete');
+    });
+});
