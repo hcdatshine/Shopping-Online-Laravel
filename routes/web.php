@@ -128,10 +128,10 @@ Route::prefix('admin')->group(function() {
     Route::group(['prefix' => 'product'],function() {
         Route::get('/','AdminController@index')->name('product.index');
 
-    //     Route::get('edit/{id}','AdminProductController@getEdit');
-    //     Route::post('edit/{id}','AdminProductController@postEdit')->name('product.edit');
+        Route::get('edit/{id}','AdminController@getEdit');
+        Route::post('edit/{id}','AdminController@postEdit')->name('product.edit');
 
-        Route::post('add','AdminProductController@postAdd')->name('product.add');
+        Route::post('add','AdminController@postAdd')->name('product.add');
 
     //     Route::get('delete/{id}','AdminProductController@Delete')->name('product.delete');
     });

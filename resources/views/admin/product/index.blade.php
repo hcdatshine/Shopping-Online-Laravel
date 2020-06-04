@@ -27,7 +27,21 @@
             @endif
 
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-4">
+                    <div class="dataTables_length" id="example1_length">
+                        <label>
+                            Show 
+                            <select name="example1_length" aria-controls="example1" class="form-control input-sm">
+                                <option value="1">1</option>
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                                <option value="20">20</option>
+                            </select>
+                            entries
+                        </label>
+                    </div>
+                </div>                
+                <div class="col-sm-4">
                     <div class="dataTables_length" id="example1_length">
                         <label>
                             Show 
@@ -41,7 +55,7 @@
                         </label>
                     </div>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                     <div id="example1_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control input-sm" placeholder="" aria-controls="example1"></label></div>
                 </div>
             </div>
@@ -128,19 +142,19 @@
                                 <br>
                                 <label>Product Price</label>
                                 <br>
-                                <input type="text" name="price" placeholder="Nhập giá sản phẩm" style="width:100%; height:40px">
+                                <input type="text" name="unit_price" placeholder="Nhập giá sản phẩm" style="width:100%; height:40px">
                                 <br>
                                 <label>Product Sale</label>
                                 <br>
-                                <input type="text" name="sale" placeholder="Nhập giá Sale, nếu không có thì nhập 0" style="width:100%; height:40px">
+                                <input type="text" name="promotion_price" placeholder="Nhập giá Sale, nếu không có thì nhập 0" style="width:100%; height:40px">
                                 <br>
-                                <label>Category_id</label><br>
-                                <select name="category_id">
+                                <label>Product Type</label><br>
+                                <select name="id_type">
                                     @foreach ($product_type as $item)
                                         <option value="{{ $item->id }}">{{ $item->name }}</option>
                                     @endforeach
                                 </select>
-                                <input type="text" name="product_type_id" style="width:100%; height:40px" placeholder="Nhập id category , chỉ nhập số không nhập chữ">
+                                {{-- <input type="text" name="product_type_id" style="width:100%; height:40px" placeholder="Nhập id category , chỉ nhập số không nhập chữ"> --}}
                                 <br>
                             </div>
                             <button type="submit" class="btn btn-success"> Submit </button>
