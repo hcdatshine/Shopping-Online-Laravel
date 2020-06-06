@@ -165,7 +165,7 @@ class PageController extends Controller
                 'reset_password.same'=>'Mật khẩu nhập lại không đúng',
             ]);
         $user = new User();
-        $user->full_name = $req->name;
+        $user->name = $req->name;
         $user->email = $req->email;
         $user->password = Hash::make($req->password);
         $user->phone = $req->phone;

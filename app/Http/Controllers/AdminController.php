@@ -37,7 +37,7 @@ class AdminController extends Controller
         $product->promotion_price = $request->promotion_price;
         $product->id_type = $request->id_type;
         $product->new = 1;
-        $product->soulded = 0;
+        $product->solded = 0;
 
         $file = $request->file('image-product');
         $nameFile = $file->getClientOriginalName();
@@ -50,8 +50,36 @@ class AdminController extends Controller
     public function getEdit($id){
         $editProduct = Product::find($id);
         $product_type = ProductType::select('id','name')->get();
-        return view('admin/product/edit',['editProduct'=>$editProduct,'categories'=>$categories]);
+        // dd($editProduct);
+        return view('admin/product/edit',compact('editProduct','product_type'));
     }
 
+    public function postEdit(Request $request,$id){
+        $product = Product::find($id);
+        $this->validate($request,[
+            'name'=>'required|unique:product,name|min:3|max:100',
+            'image-product'=>'image|max:4048'
+        ],[
+            'name.required'=>'Bạn chưa nhập tên',
+            'name.unique'=>'Tên đã tồn tại',
+            'name.min'=>'Tên phải lớn hơn 3 ký tự',
+            'name.max'=>'Tên phải nhỏ hơn 100 ký tự',
+            'image-product.image' => 'Định dạng không cho phép',
+            'image-product.max' => 'Kích thước file quá lớn'
+        ]);
+        $product->name = $request->name;
+        $product->promotion_price = $request->promotion_price;
+        $product->unit_price = $request->unit_price;
+        $product->id_type = $request->id_type;
+        
+        if($request->hasFile('image-product')){
+            $file = $request->file('image-product');
+            $nameFile = $file->getClientOriginalName();
+            $file->move('source/image/product',$nameFile);
+            $product->image = $nameFile;
+        }
+        $product->save();
+        return redirect()->route('product.index')->with('message','Edit thành công');
+    }
 
 }

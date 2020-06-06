@@ -10,7 +10,7 @@
             <div class="pull-right auto-width-right">
                 <ul class="top-details menu-beta l-inline"> 
                     @if(Auth::check())
-                        <li><a href="{{route('thongtinnguoidung')}}">{{Auth::user()->full_name}}</a></li>
+                        <li><a href="{{route('thongtinnguoidung')}}">{{Auth::user()->name}}</a></li>
                         <li><a href="{{route('logout')}}">Đăng Xuất</a></li>
                     @else
                         <li><a href="{{route('signup')}}">Đăng kí</a></li>

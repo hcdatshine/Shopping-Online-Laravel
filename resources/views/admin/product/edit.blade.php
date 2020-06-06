@@ -1,4 +1,4 @@
-{{-- @extends('layout.app')
+@extends('layout.app')
  @section('content')
 <section class="content">
     <div class="col-lg-7">
@@ -15,16 +15,17 @@
                     <br>
                     <label>Product Price</label>
                     <br>
-                <input type="text" name="price" value="{{$editProduct->price}}" style="width:100%; height:40px">
+                    <input type="text" name="unit_price" value="{{$editProduct->unit_price}}" style="width:100%; height:40px">
                     <br>
                     <label>Product Sale</label>
                     <br>
-                    <input type="text" name="sale" value="{{$editProduct->sale}}" style="width:100%; height:40px">
+                    <input type="text" name="promotion_price" value="{{$editProduct->promotion_price}}" style="width:100%; height:40px">
                     <br>
-                    <label>Category_id</label>
-                    <select name="category_id">
-                        <option value="{{ $editProduct->Category->id }}" selected>{{ $editProduct->Category->name }}</option>
-                        @foreach ($categories as $item)
+                    <label>Product Type</label>
+                    <br>
+                    <select name="id_type">
+                        <option value="{{ $editProduct->product_type->id }}" selected>{{ $editProduct->product_type->name }}</option>
+                        @foreach ($product_type as $item)
                             <option value="{{ $item->id }}">{{$item->name}}</option>
                         @endforeach
                     </select>
@@ -34,4 +35,4 @@
         </form>
     </div>
 </section>
-@stop --}}
+@stop
