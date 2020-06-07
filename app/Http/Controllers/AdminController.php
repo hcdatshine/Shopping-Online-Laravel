@@ -57,15 +57,16 @@ class AdminController extends Controller
     public function postEdit(Request $request,$id){
         $product = Product::find($id);
         $this->validate($request,[
-            'name'=>'required|unique:product,name|min:3|max:100',
-            'image-product'=>'image|max:4048'
+            'name'=>'required|min:3|max:100',
+            'image-product'=>'image|max:4048',
+            'unit_price'=>'gte:promotion_price'
         ],[
             'name.required'=>'Bạn chưa nhập tên',
-            'name.unique'=>'Tên đã tồn tại',
             'name.min'=>'Tên phải lớn hơn 3 ký tự',
             'name.max'=>'Tên phải nhỏ hơn 100 ký tự',
             'image-product.image' => 'Định dạng không cho phép',
-            'image-product.max' => 'Kích thước file quá lớn'
+            'image-product.max' => 'Kích thước file quá lớn',
+            'unit_price.gte' => 'Giá phải lớn hơn hoặc bằng giá khuyến mại'
         ]);
         $product->name = $request->name;
         $product->promotion_price = $request->promotion_price;
@@ -79,7 +80,7 @@ class AdminController extends Controller
             $product->image = $nameFile;
         }
         $product->save();
-        return redirect()->route('product.index')->with('message','Edit thành công');
+        return redirect('admin/product')->with('message','Sửa thành công');
     }
 
 }

@@ -96,8 +96,8 @@
                                 <td>{{ $item->product_type->name }}</td>
                                 <td>
                                     <span>
-                                    <a class="btn btn-success" href="{{route('product.edit',$item->id)}}"> Edit </a>
-                                        <a class="btn btn-danger" href="#"> Delete </a>
+                                    <a class="btn btn-success" data-target="#myModalAdd" href="{{route('product.edit',$item->id)}}"> Edit </a>
+                                    <a class="btn btn-danger" href="#"> Delete </a>
                                     </span>
                                 </td>
                             </tr>

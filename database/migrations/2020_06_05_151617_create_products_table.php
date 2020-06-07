@@ -19,7 +19,7 @@ class CreateProductsTable extends Migration
             $table->integer('id_type');
             $table->longtext('description');
             $table->integer('unit_price');
-            $table->integer('promotion_price');
+            $table->integer('promotion_price')->default(0);
             $table->integer('solded')->default(0);
             $table->string('image');
             $table->string('unit')->default('Hộp');

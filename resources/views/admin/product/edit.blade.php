@@ -2,6 +2,13 @@
  @section('content')
 <section class="content">
     <div class="col-lg-7">
+        @if( count($errors) >0 )
+            <div class="alert alert-danger">
+                @foreach( $errors->all() as $error)
+                    {{ $error }} <br>
+                @endforeach
+            </div>
+        @endif
         <form method="POST" action="{{route('product.edit',$editProduct->id)}}"  enctype='multipart/form-data'>
                 {{ csrf_field() }} 
                 <div class="form-group">

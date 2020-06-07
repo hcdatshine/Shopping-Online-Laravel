@@ -86,6 +86,7 @@
                                     </div>
                                     <div class="single-item-body">
                                         <p class="single-item-title">{{$item->name}}</p>
+                                        <p class="single-item-title">Đã bán: {{$item->solded}}</p>
                                         <p class="single-item-price">
                                             @if($item->promotion_price!=0)
                                             <span class="flash-del">{{ number_format($item->unit_price) }}</span>
@@ -104,7 +105,7 @@
                             </div>   
                             @endforeach
                         </div>
-                        <div class="row">{{ $product_best_selling -> links() }}</div>
+                        {{-- <div class="row">{{ $product_best_selling -> links() }}</div> --}}
                         <div class="space40">&nbsp;</div>
                     </div> <!-- .beta-products-list -->
                 </div>

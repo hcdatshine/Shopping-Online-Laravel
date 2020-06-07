@@ -40,7 +40,8 @@ class PageController extends Controller
         $product_type=ProductType::select('name','id')->get();
         $product_type_name = ProductType::select('name')->where('id',$type)->first();
         // lấy sản phẩm được mua nhiều nhất theo thứ tự giảm dần
-        $product_best_selling = Product::orderByDesc('solded')->paginate(3);
+        $product_best_selling = Product::orderByDesc('solded')->take(3)->get();
+        // dd($product_best_selling);
         return view('page.product_type',compact('products','product_type','product_type_name','product_best_selling'));
     }
 
@@ -83,7 +84,6 @@ class PageController extends Controller
     
     public function postCheckout(Request $req){
         $cart =Session::get('cart');
-
         $customer = new Customer;
         $customer->name = $req->name;
         $customer->gender = $req->gender;
@@ -102,6 +102,10 @@ class PageController extends Controller
         $bill->save();
 
         foreach ($cart->items as $key => $value) {
+            $product = Product::find($key);
+            $product->solded = ($product->solded + $value['qty']);
+            $product->save();
+
             $bill_detail=new BillDetail;
             $bill_detail->id_bill = $bill->id;
             $bill_detail->id_product = $key;

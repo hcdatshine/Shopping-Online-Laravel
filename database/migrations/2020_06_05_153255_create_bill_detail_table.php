@@ -18,7 +18,7 @@ class CreateBillDetailTable extends Migration
             $table->integer('id_bill');
             $table->integer('id_product');
             $table->integer('quantity')->default(1);
-            $table->double('unit_price');
+            $table->integer('unit_price');
             $table->timestamps();
         });
     }
