@@ -21,10 +21,22 @@
             <div class="clearfix"></div>
         </div> <!-- .container -->
     </div> <!-- .header-top -->
+    @if(count($errors) > 0)
+    <div class="alert alert-danger">
+       @foreach ($errors->all() as $error)
+       {{$error}}<br>
+       @endforeach
+    </div>
+    @endif
+    @if(session('thongbao'))
+    <div class="alert alert-success">
+       {{session('thongbao')}}
+    </div>
+    @endif
     <div class="header-body">
         <div class="container beta-relative">
             <div class="pull-left">
-                <a href="index.html" id="logo"><img src="source/assets/dest/images/logo-cake.png" width="200px" alt=""></a>
+                <a href="{{route('trangchu')}}" id="logo"><img src="source/assets/dest/images/logo-cake.png" width="200px" alt=""></a>
             </div>
             <div class="pull-right beta-components space-left ov">
                 <div class="space10">&nbsp;</div>

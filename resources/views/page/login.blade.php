@@ -38,11 +38,21 @@
                 
                     <div class="form-block">
                         <label for="email">Email address*</label>
-                        <input type="email" name="email" required>
+                        <br><br>
+                        <input type="email" name="email" required style="height: 35px;
+                        border-color: #333; ">
                     </div>
                     <div class="form-block">
-                        <label for="phone">Password*</label>
-                        <input type="password" name="password" required>
+                        <label for="password">Password*</label>
+                        <br><br>
+                        <input type="password" name="password" required style="height: 35px ">
+                    </div>
+                    <div>
+                        <input type="checkbox" name="remember" style="display: inline-block">
+                        {{-- <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+                        <label for="vehicle1"> Ghi nhớ người dùng</label><br> --}}
+                        <label for="remember" style="display: inline ;padding-left: 1px;">Ghi nhớ người dùng</label>
+                        <br><br>
                     </div>
                     <div class="form-block">
                         <button type="submit" class="btn btn-primary">Login</button>

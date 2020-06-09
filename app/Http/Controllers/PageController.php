@@ -118,8 +118,19 @@ class PageController extends Controller
         Session::forget('cart');
         return redirect()->route('trangchu')->with('thongbao','Đặt hàng thành công');
     }
+    public function getSearch(Request $req){
+        $product = Product::where('name','like','%'.$req->key.'%')
+                            ->orWhere('unit_price',$req->key)
+                            ->get();
+        return view('page.search',compact('product'));
+    }
+
     public function getLogin(){
-        return view('page.login');
+        if(Auth::check()){
+            return redirect()->route('trangchu')->with('thongbao','Bạn đã đăng nhập');
+        }
+        else   
+            return view('page.login');
     }
     
     public function postLogin(Request $req){
@@ -136,7 +147,7 @@ class PageController extends Controller
             'password.min'=>'Mật khẩu dài hơn 6 kí tự',
         ]);
         $user = $req->only('email','password');
-        if(Auth::attempt($user)){
+        if(Auth::attempt($user,$req->has('remember'))){
             return redirect()->route('trangchu')->with('thongbao','Đăng nhập thành công');
         }
         else {
@@ -145,7 +156,11 @@ class PageController extends Controller
     }
 
     public function getSignup(){
-        return view('page.signup');
+        // if(Auth::check()){
+        //     redirect()->route('login')->with('thongbao','Bạn đã đăng nhập');
+        // }
+        // else    
+            return view('page.signup');
     }
     
     public function postSignup(Request $req){
