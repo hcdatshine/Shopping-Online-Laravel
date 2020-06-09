@@ -25,7 +25,7 @@
                     <form action="{{route('thongtinnguoidung')}}" method="post" class="">
                         <div>
                             <label>Họ tên</label>
-                        <input type="text" class="form-control" placeholder="Username" name="name" value="{{$user->full_name}}" aria-describedby="basic-addon1">
+                        <input type="text" class="form-control" placeholder="Username" name="name" value="{{$user->name}}" aria-describedby="basic-addon1">
                         </div>
                         <br>
                         <div>
@@ -68,8 +68,8 @@
 
 @section('script')
     <script>
-        $(document).ready(function(){
-            $("#changePassword").change(function(){
+        $(function($){
+            $("#changePassword").on('change', function(){
                 if($(this).is(":checked"))
                 {
                     $(".password").removeAttr('disabled');

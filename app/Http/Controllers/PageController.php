@@ -59,10 +59,14 @@ class PageController extends Controller
 
     public function getAddToCart(Request $req,$id){
         $product = Product::find($id);
+        $qty = intval($req->qty);
+        if (!$qty) {$qty = 1;}
         $oldCart = Session('cart')?Session::get('cart'):null;
         $cart = new Cart($oldCart);
-        $cart->add($product,$id);
-        $req->session()->put('cart',$cart);
+        for($i=0; $i<$qty; $i++) {
+            $cart->add($product,$id);
+            $req->session()->put('cart',$cart);
+        }
         return redirect()->back();
     }
 

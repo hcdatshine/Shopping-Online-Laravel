@@ -49,17 +49,18 @@
                         </div>
                         <div class="space20">&nbsp;</div>
 
-                        <p>Options:</p>
+                        <p>Số Lượng:</p>
                         <div class="single-item-options">
-                            <select class="wc-select" name="qty">
-                                <option>Số Lượng : </option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                            </select>
-                            <a class="add-to-cart" href="{{route('themgiohang',$product_detail->id)}}"><i class="fa fa-shopping-cart"></i></a>
+                            <form action="{{route('themgiohang',$product_detail->id)}}" method="GET">
+                                <select class="wc-select" id="item-quantity" name="qty">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                                <button type="submit" class="add-to-cart"><i class="fa fa-shopping-cart"></i></button>        
+                            </form>
                             <div class="clearfix"></div>
                         </div>
                     </div>
