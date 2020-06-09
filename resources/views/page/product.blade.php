@@ -51,7 +51,7 @@
 
                         <p>Options:</p>
                         <div class="single-item-options">
-                            <select class="wc-select" name="color">
+                            <select class="wc-select" name="qty">
                                 <option>Số Lượng : </option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -120,71 +120,41 @@
                 <div class="widget">
                     <h3 class="widget-title">Best Sellers</h3>
                     <div class="widget-body">
+                        @foreach ($product_best_selling as $item)
                         <div class="beta-sales beta-lists">
                             <div class="media beta-sales-item">
-                                <a class="pull-left" href="product.html"><img src="source/assets//dest/images/products/sales/1.png" alt=""></a>
+                                <a class="pull-left" href="{{route('sanpham',$item->id)}}"><img src="source/image/product/{{$item->image}}" alt=""></a>
                                 <div class="media-body">
-                                    Sample Woman Top
-                                    <span class="beta-sales-price">$34.55</span>
-                                </div>
-                            </div>
-                            <div class="media beta-sales-item">
-                                <a class="pull-left" href="product.html"><img src="source/assets//dest/images/products/sales/2.png" alt=""></a>
-                                <div class="media-body">
-                                    Sample Woman Top
-                                    <span class="beta-sales-price">$34.55</span>
-                                </div>
-                            </div>
-                            <div class="media beta-sales-item">
-                                <a class="pull-left" href="product.html"><img src="source/assets//dest/images/products/sales/3.png" alt=""></a>
-                                <div class="media-body">
-                                    Sample Woman Top
-                                    <span class="beta-sales-price">$34.55</span>
-                                </div>
-                            </div>
-                            <div class="media beta-sales-item">
-                                <a class="pull-left" href="product.html"><img src="source/assets//dest/images/products/sales/4.png" alt=""></a>
-                                <div class="media-body">
-                                    Sample Woman Top
-                                    <span class="beta-sales-price">$34.55</span>
+                                    {{$item->name}}
+                                    @if($item->promotion_price!=0)
+                                    <span class="beta-sales-price">{{ number_format($item->promotion_price) }} đ</span>
+                                    @else
+                                    <span class="beta-sales-price">{{ number_format($item->unit_price) }}đ</span>
+                                    @endif
                                 </div>
                             </div>
                         </div>
+                        @endforeach
                     </div>
                 </div> <!-- best sellers widget -->
                 <div class="widget">
                     <h3 class="widget-title">New Products</h3>
                     <div class="widget-body">
+                        @foreach ($new_product as $item)
                         <div class="beta-sales beta-lists">
                             <div class="media beta-sales-item">
-                                <a class="pull-left" href="product.html"><img src="source/assets//dest/images/products/sales/1.png" alt=""></a>
+                                <a class="pull-left" href="{{route('sanpham',$item->id)}}"><img src="source/image/product/{{$item->image}}" alt=""></a>
                                 <div class="media-body">
-                                    Sample Woman Top
-                                    <span class="beta-sales-price">$34.55</span>
-                                </div>
-                            </div>
-                            <div class="media beta-sales-item">
-                                <a class="pull-left" href="product.html"><img src="source/assets//dest/images/products/sales/2.png" alt=""></a>
-                                <div class="media-body">
-                                    Sample Woman Top
-                                    <span class="beta-sales-price">$34.55</span>
-                                </div>
-                            </div>
-                            <div class="media beta-sales-item">
-                                <a class="pull-left" href="product.html"><img src="source/assets//dest/images/products/sales/3.png" alt=""></a>
-                                <div class="media-body">
-                                    Sample Woman Top
-                                    <span class="beta-sales-price">$34.55</span>
-                                </div>
-                            </div>
-                            <div class="media beta-sales-item">
-                                <a class="pull-left" href="product.html"><img src="source/assets//dest/images/products/sales/4.png" alt=""></a>
-                                <div class="media-body">
-                                    Sample Woman Top
-                                    <span class="beta-sales-price">$34.55</span>
+                                    {{$item->name}}
+                                    @if($item->promotion_price!=0)
+                                    <span class="beta-sales-price">{{ number_format($item->promotion_price) }} đ</span>
+                                    @else
+                                    <span class="beta-sales-price">{{ number_format($item->unit_price) }}đ</span>
+                                    @endif
                                 </div>
                             </div>
                         </div>
+                        @endforeach
                     </div>
                 </div> <!-- best sellers widget -->
             </div>

@@ -16,7 +16,7 @@
         <li class="header">Dashboard</li>
         {{-- <li class="{{ (\Request::route()->getName() == 'dang-nhap') ? 'active' : '' }}"> --}}
         <li>
-          <a href="{{ route('product.index') }}">
+          <a href="{{ route('category.index') }}">
             <i class="fa fa-dashboard"></i> <span>Category</span>
           </a>
         </li>

@@ -112,17 +112,17 @@ Route::prefix('admin')->group(function() {
         return view('layout.app');
     });
     //category
-    // Route::group(['prefix' => 'category'],function() {
-    //     Route::get('/','AdminCategoryController@index')->name('category.index');
-    //     Route::get('/appear/{id}','AdminCategoryController@appear')->name('category.appear');
+    Route::group(['prefix' => 'category'],function() {
+        Route::get('/','AdminCategoryController@index')->name('category.index');
+        // Route::get('/appear/{id}','AdminCategoryController@appear')->name('category.appear');
 
-    //     Route::get('edit/{id}','AdminCategoryController@getEdit');
-    //     Route::post('edit/{id}','AdminCategoryController@postEdit')->name('category.edit');
+        Route::get('edit/{id}','AdminCategoryController@getEdit');
+        Route::post('edit/{id}','AdminCategoryController@postEdit')->name('category.edit');
 
-    //     Route::post('add','AdminCategoryController@postAdd')->name('category.add');
+        Route::post('add','AdminCategoryController@postAdd')->name('category.add');
 
-    //     Route::get('delete/{id}','AdminCategoryController@Delete')->name('category.delete');
-    // });
+        Route::get('delete/{id}','AdminCategoryController@Delete')->name('category.delete');
+    });
     
     // product
     Route::group(['prefix' => 'product'],function() {
@@ -133,6 +133,6 @@ Route::prefix('admin')->group(function() {
 
         Route::post('add','AdminController@postAdd')->name('product.add');
 
-    //     Route::get('delete/{id}','AdminProductController@Delete')->name('product.delete');
+        Route::get('delete/{id}','AdminController@deleteProduct')->name('product.delete');
     });
 });

@@ -23,12 +23,12 @@
                             <div class="alert alert-success">
                                 {{session('message')}}
                             </div>
-                        @endif 
+                        @endif
                         @if(session('danger'))
                             <div class="alert alert-danger">
                                 {{session('danger')}}
                             </div>
-                        @endif          
+                        @endif 
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="dataTables_length" id="example1_length">
@@ -59,31 +59,33 @@
                                         <tr role="row">
                                             <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 201px;">ID</th>
                                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 246px;">Name</th>
-                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 219px;">Active</th>
-                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 172px;">Create_at</th>
+                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 219px;">Image</th>
+                                            <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 172px;">Created_at</th>
                                             <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 126px;">Action</th>
                                         </tr>
                                     </thead>
-                                    {{-- <tbody>
+                                    <tbody>
                                         @foreach($categories as $item)
                                         <tr role="row" class="odd">
                                             <td class="sorting_1">{{ $item->id }}</td>
                                             <td>{{ $item -> name }}</td>
                                             <td>
-                                                @if(($item->active)==0)
-                                                <a href="{{route('category.appear',$item->id)}}" class='btn btn-danger'> Ẩn </a> @else
-                                                <a href="{{route('category.appear',$item->id)}}" class='btn btn-success'>Hiện</a> @endif
+                                                @if($item->image == 'no-image.png')
+                                                <img src="{{ asset('image/no-image.png')}}" style="width: 100px;height: 75px" alt="">
+                                                @else 
+                                                <img src="{{ asset('source/image/product/'. $item->image)}}" style="width: 100px;height: 75px" alt="">
+                                                @endif
                                             </td>
                                             <td>{{ $item -> created_at }}</td>
                                             <td>
                                                 <span>
-                                            <a class="btn btn-success" href="{{route('category.edit',$item->id)}}"> Edit </a>
-                                                <a class="btn btn-danger" href="{{route('category.delete',$item->id)}}"> Delete </a>
-                                        </span>
+                                                    <a class="btn btn-success" href="{{route('category.edit',$item->id)}}"> Edit </a>
+                                                    <a class="btn btn-danger" href="{{route('category.delete',$item->id)}}"> Delete </a>
+                                                </span>
                                             </td>
                                         </tr>
                                         @endforeach
-                                    </tbody> --}}
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
@@ -92,7 +94,7 @@
                                 <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div>
                             </div>
                             <div class="col-sm-7">
-                                {{-- {!! $categories->links() !!} --}}
+                                {!! $categories->links() !!}
                             </div>
                         </div>
                     </div>
@@ -110,14 +112,19 @@
                                 <h4 class="modal-title">Modal Header</h4>
                             </div>
                             <div class="modal-body">
-                                {{-- <form method="POST" action="{{route('category.add')}}">
+                                <form method="POST" action="{{route('category.add')}}" enctype="multipart/form-data">
                                     {{ csrf_field() }} 
                                     <div class="form-group">
                                         <label>Category name</label>
                                         <input class="form-control" name="name" placeholder="Nhập tên Category">
+                                        <br>
+                                        <label>Image</label>
+                                        <br>
+                                        <input type="file" name="image-product-type" id="image-product-type">
+                                        <br>
                                     </div>
                                     <button type="submit" class="btn btn-primary">Submit</button>
-                                </form> --}}
+                                </form>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

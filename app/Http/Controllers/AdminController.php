@@ -50,7 +50,6 @@ class AdminController extends Controller
     public function getEdit($id){
         $editProduct = Product::find($id);
         $product_type = ProductType::select('id','name')->get();
-        // dd($editProduct);
         return view('admin/product/edit',compact('editProduct','product_type'));
     }
 
@@ -80,7 +79,13 @@ class AdminController extends Controller
             $product->image = $nameFile;
         }
         $product->save();
-        return redirect('admin/product')->with('message','Sửa thành công');
+        return redirect()->back()->with('message','Sửa thành công');
     }
 
+    public function deleteProduct($id){
+        $product = Product::find($id);
+        @unlink('image/product/'.$product->image);
+        $product->delete();
+        return redirect()->back()->with('message',' Xoá thành công');
+    }
 }

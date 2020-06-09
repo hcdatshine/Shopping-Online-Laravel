@@ -20,7 +20,7 @@ class PageController extends Controller
     public function getIndex(){
         $slide = Slide::all();
         $new_product = Product::where('new',1)->paginate(4);
-        $sale_product= Product::where('promotion_price','<>',0)->paginate(8);
+        $sale_product= Product::where('promotion_price','<>',0)->take(4)->get();
         return view('page.index',compact('slide','new_product','sale_product'));
     }
     //21/04 dang lam sp voi sp tuong tu
@@ -52,7 +52,9 @@ class PageController extends Controller
     public function getProduct(Request $req){
         $product_detail=Product::where('id',$req->id)->first();
         $product_related=Product::where('id_type',$product_detail->id_type)->paginate(3);
-        return view('page.product',compact('product_detail','product_related'));
+        $new_product = Product::where('new',1)->take(4)->get();
+        $product_best_selling = Product::orderByDesc('solded')->take(4)->get();
+        return view('page.product',compact('product_detail','product_related','product_best_selling','new_product'));
     }
 
     public function getAddToCart(Request $req,$id){

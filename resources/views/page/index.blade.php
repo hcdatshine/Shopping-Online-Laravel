@@ -101,7 +101,7 @@
                 </div>
                 @endforeach
             </div>
-        <div class="row">{{ $sale_product -> links() }}</div>
+        {{-- <div class="row">{{ $sale_product -> links() }}</div> --}}
         </div> <!-- .beta-pđồngcts-list -->
     </div>
 </div> <!-- end section with sidebar and main content -->
