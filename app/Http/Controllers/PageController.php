@@ -152,7 +152,11 @@ class PageController extends Controller
         ]);
         $user = $req->only('email','password');
         if(Auth::attempt($user,$req->has('remember'))){
-            return redirect()->route('trangchu')->with('thongbao','Đăng nhập thành công');
+            if (Auth::user()->quyen) {
+                return redirect()->route('category.index');
+            }
+            else 
+                return redirect()->route('trangchu')->with('thongbao','Đăng nhập thành công');
         }
         else {
             return redirect()->route('login')->with('thongbao','Đăng nhập không thành công');
@@ -160,10 +164,10 @@ class PageController extends Controller
     }
 
     public function getSignup(){
-        // if(Auth::check()){
-        //     redirect()->route('login')->with('thongbao','Bạn đã đăng nhập');
-        // }
-        // else    
+        if(Auth::check()){
+            return redirect()->route('login')->with('thongbao','Bạn đã đăng nhập vui lòng đăng xuất rồi đăng ký');
+        }
+        else    
             return view('page.signup');
     }
     
@@ -213,28 +217,41 @@ class PageController extends Controller
         else
             return redirect('dangnhap')->with('thongbao','Bạn chưa Đăng Nhập!');
     }
-    public function postUserInformation(Request $req){
-        // $this->validate($req,
-        // [
-        //     'password'=>'min:6|max:25',
-        //     'name'=>'required|max:30',
-        //     'reset_password'=>'same:password',
-        //     'phone' => 'required'
-        // ],
-        // [
-        //     'email.required'=>'Hãy nhập lại email',
-        //     'email.email'=>'Email chưa đúng định dạng',
-        //     'email.unique'=>'email đã tồn tại',
-        //     'password.required'=>'Hãy nhập lại password',
-        //     'password.max'=>'Mật khẩu ngắn hơn 25 kí tự',
-        //     'password.min'=>'Mật khẩu dài hơn 6 kí tự',
-        //     'name.required'=>'Hãy nhập lại tên',
-        //     'phone.required'=>'Hãy nhập lại số điện thoại',
-        //     'name.max'=>'Tên ngắn hơn 30 kí tự',
-        //     'reset_password.required'=>'Hãy Nhập lại mật khẩu',
-        //     'reset_password.same'=>'Mật khẩu nhập lại không đúng',
-        // ]);
+    public function postUserInformation(Request $req,$id){
+        $user = User::find($id);
+        $this->validate($req,
+        [
+            'name'=>'required|max:30',
+            'phone' => 'required'
+        ],
+        [
+            'name.required'=>'Hãy nhập lại tên',
+            'phone.required'=>'Hãy nhập lại số điện thoại',
+            'name.max'=>'Tên ngắn hơn 30 kí tự',
+        ]);
+        $user->name = $req->name;
+        $user->phone = $req->phone;
+        $user->address = $req->address;
+        $user->update(['updated_at' => now()]);
 
+        if($req->checkPassword == "on") 
+        {
+            $this->validate($req,
+            [
+                'password'=>'min:6|max:25',
+                'reset_password'=>'same:password',
+            ],
+            [
+                'password.required'=>'Hãy nhập lại password',
+                'password.max'=>'Mật khẩu ngắn hơn 25 kí tự',
+                'password.min'=>'Mật khẩu dài hơn 6 kí tự',
+                'reset_password.required'=>'Hãy Nhập lại mật khẩu',
+                'reset_password.same'=>'Mật khẩu nhập lại không đúng',
+            ]);
+            $user->password=bcrypt($req->password);
+        }
+        $user->save();
+        return redirect()->back()->with('thongbao','Đã sửa thông tin thành công');
     }
 
 }

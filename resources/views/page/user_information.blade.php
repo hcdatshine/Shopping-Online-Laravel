@@ -22,7 +22,8 @@
         <div class="col-md-8">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <form action="{{route('thongtinnguoidung')}}" method="post" class="">
+                    <form action="{{route('nguoidung',$user->id)}}" method="POST" enctype='multipart/form-data'>
+                        {{ csrf_field() }} 
                         <div>
                             <label>Họ tên</label>
                         <input type="text" class="form-control" placeholder="Username" name="name" value="{{$user->name}}" aria-describedby="basic-addon1">
@@ -37,23 +38,28 @@
                         <br>
                         <div>
                             <label>Số Điện Thoại</label>
-                        <input type="text" class="form-control" placeholder="Username" name="phone" value="{{$user->phone}}" aria-describedby="basic-addon1">
+                        <input type="text" class="form-control" placeholder="Số điện thoại" name="phone" value="{{$user->phone}}" aria-describedby="basic-addon1">
                         </div>
                         <br>	
                         <div>
-                            <input type="checkbox" id="changePassword" name="checkpassword" style="display: block">
-                            <label>Đổi mật khẩu</label>
-                            <input type="password" class="form-control password" name="password" aria-describedby="basic-addon1" disabled>
+                            <label>Địa chỉ</label>
+                        <input type="text" class="form-control" placeholder="Nhập địa chỉ" name="address" value="{{$user->address}}" aria-describedby="basic-addon1">
+                        </div>
+                        <br>
+                        <div>
+                            <input type="checkbox" id="changePassword" name="checkPassword" style="display: inline-block">
+                            <label style="display: inline; padding-left: 3px">Đổi mật khẩu</label>
+                            <br><br>
+                            <input type="password" class="form-control password" laceholder="Nhập mật khẩu" name="password" aria-describedby="basic-addon1" disabled>
                         </div>
                         <br>
                         <div>
                             <label>Nhập lại mật khẩu</label>
-                            <input type="password" class="form-control password" name="passwordAgain" aria-describedby="basic-addon1" disabled>
+                            <input type="password" class="form-control password" laceholder="Nhập lại mật khẩu" name="reset_password" aria-describedby="basic-addon1" disabled>
                         </div>
                         <br>
-                        <button type="submit" class="btn btn-default">Thay đổi 
+                        <button type="submit" class="btn btn-default">Cập nhật
                         </button>
-
                     </form>
                 </div>
             </div>

@@ -13,18 +13,6 @@
         <div class="clearfix"></div>
     </div>
 </div>
-@if(count($errors)>0)
-    <div class="alert alert-danger">
-        @foreach ($errors as $errors)
-            {{ $errors }}
-        @endforeach
-    </div>
-@endif
-@if(session('thongbao'))
-    <div class="alert alert-success">
-        {{session('thongbao')}}
-    </div>
-@endif
 <div class="container">
     <div id="content">
         <form action="{{route('login')}}" method="post" class="beta-form-checkout">

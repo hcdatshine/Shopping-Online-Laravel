@@ -15,19 +15,21 @@
       <ul class="sidebar-menu tree" data-widget="tree">
         <li class="header">Dashboard</li>
         {{-- <li class="{{ (\Request::route()->getName() == 'dang-nhap') ? 'active' : '' }}"> --}}
-        <li>
+        <li class="{{ (\Request::route()->getName() == 'category.index') ? 'active' : '' }}">
           <a href="{{ route('category.index') }}">
-            <i class="fa fa-dashboard"></i> <span>Category</span>
+            <i class="fa fa-list-alt" aria-hidden="true"></i> <span>Category</span>
           </a>
         </li>
-        {{-- </li > --}}
-        {{-- <li class="{{ (\Request::route()->getName() == 'dang-nhap') ? 'active' : '' }}"> --}}
-        <li>
+        <li class="{{ (\Request::route()->getName() == 'product.index') ? 'active' : '' }}">
           <a href="{{ route('product.index') }}">
-            <i class="fa fa-dashboard"></i> <span>Product</span>
+            <i class="fa fa-align-left"></i> <span>Product</span>
           </a>
         </li>
-        {{-- </li> --}}
+        <li class="{{ (\Request::route()->getName() == 'user.index') ? 'active' : '' }}">
+          <a href="{{ route('user.index') }}">
+            <i class="fa fa-user" aria-hidden="true"></i> <span>User</span>
+          </a>
+        </li>
     </section>
     <!-- /.sidebar -->
   </aside>

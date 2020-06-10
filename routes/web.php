@@ -97,8 +97,8 @@ Route::get('thong-tin-nguoi-dung',[
     'uses'=>'PageController@getUserInformation'
 ]);
 
-Route::post('thong-tin-nguoi-dung',[
-    'as'=>'thongtinnguoidung',
+Route::post('thong-tin-nguoi-dung/{id}',[
+    'as'=>'nguoidung',
     'uses'=>'PageController@postUserInformation'
 ]);
 
@@ -107,7 +107,7 @@ Route::post('thong-tin-nguoi-dung',[
 //         'as'=>'adminproduct',
 //         'uses'=>'AdminController@index'
 // ]);
-Route::prefix('admin')->group(function() {
+Route::group(['prefix' => 'admin','middleware' => 'authAdmin'],function() {
     Route::get('/',function(){
         return view('layout.app');
     });
@@ -134,5 +134,16 @@ Route::prefix('admin')->group(function() {
         Route::post('add','AdminController@postAdd')->name('product.add');
 
         Route::get('delete/{id}','AdminController@deleteProduct')->name('product.delete');
+    });
+    
+    Route::group(['prefix' => 'user'],function() {
+        Route::get('/','UserController@index')->name('user.index');
+
+        Route::get('edit/{id}','UserController@getEdit');
+        Route::post('edit/{id}','UserController@postEdit')->name('user.edit');
+
+        Route::post('add','UserController@postAdd')->name('user.add');
+
+        Route::get('delete/{id}','UserController@deleteUser')->name('user.delete');
     });
 });
