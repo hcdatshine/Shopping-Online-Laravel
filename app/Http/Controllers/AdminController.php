@@ -8,6 +8,7 @@ use App\ProductType;
 
 class AdminController extends Controller
 {
+    
     public function index(){
         $products = Product::select()->with('product_type')->paginate(5);
         $product_type = ProductType::select('id','name')->get();

@@ -7,7 +7,7 @@
         </div>
         <div class="pull-right">
             <div class="beta-breadcrumb">
-                <a href="index.html">Home</a> / <span>thong-tin-nguoi-dung</span>
+                <a href="{{route('trangchu')}}">Home</a> / <span><a href="{{route('thongtinnguoidung')}}">thong-tin-nguoi-dung</a></span>
             </div>
         </div>
         <div class="clearfix"></div>
