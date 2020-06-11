@@ -23,16 +23,41 @@
                 <div class="col-sm-6">
                     <h4>Đặt hàng</h4>
                     <div class="space20">&nbsp;</div>
-
+                    
+                    @if(empty($user))
                     <div class="form-block">
                         <label for="name">Họ tên*</label>
-                    <input type="text" id="name" name='name' value="{{$user->name}}" placeholder="Họ tên" required>
+                        <input type="text" id="name" name='name'  placeholder="Họ tên" required>
                     </div>
                     <div class="form-block">
                         <label>Giới tính </label>
                         <input id="gender" type="radio" class="input-radio" name="gender" value="nam" checked="checked" style="width: 10%"><span style="margin-right: 10%">Nam</span>
-                        <input id="gender" type="radio" class="input-radio" name="gender" value="nữ" style="width: 10%"><span>Nữ</span>
-                                    
+                        <input id="gender" type="radio" class="input-radio" name="gender" value="nữ" style="width: 10%"><span>Nữ</span>                                   
+                    </div>
+                    <div class="form-block">
+                        <label for="email">Email*</label>
+                        <input type="email" id="email" name='email' required placeholder="expample@gmail.com">
+                    </div>
+
+                    <div class="form-block">
+                        <label for="adress">Địa chỉ*</label>
+                        <input type="text" id="address" name='address'  placeholder="Street Address" required>
+                    </div>
+                    
+
+                    <div class="form-block">
+                        <label for="phone">Điện thoại*</label>
+                        <input type="text" id="phone" name='phone' required>
+                    </div>
+                    @else
+                    <div class="form-block">
+                        <label for="name">Họ tên*</label>
+                        <input type="text" id="name" name='name' value="{{$user->name}}" placeholder="Họ tên" required>
+                    </div>
+                    <div class="form-block">
+                        <label>Giới tính </label>
+                        <input id="gender" type="radio" class="input-radio" name="gender" value="nam" checked="checked" style="width: 10%"><span style="margin-right: 10%">Nam</span>
+                        <input id="gender" type="radio" class="input-radio" name="gender" value="nữ" style="width: 10%"><span>Nữ</span>                   
                     </div>
 
                     <div class="form-block">
@@ -41,8 +66,8 @@
                     </div>
 
                     <div class="form-block">
-                        <label for="adress">Địa chỉ*</label>
-                        <input type="text" id="address" name='address' value="{{$user->address}}"  placeholder="Street Address" required>
+                        <label for="address">Địa chỉ*</label>
+                        <input type="text" id="address" name='address' value="{{$user->address}}" placeholder="Street Address" required>
                     </div>
                     
 
@@ -50,6 +75,7 @@
                         <label for="phone">Điện thoại*</label>
                         <input type="text" id="phone" name='phone' value="{{$user->phone}}" required>
                     </div>
+                    @endif
                     
                     <div class="form-block">
                         <label for="notes">Ghi chú</label>

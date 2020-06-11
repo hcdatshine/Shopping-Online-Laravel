@@ -87,11 +87,28 @@ class PageController extends Controller
         $cart = Session::has('cart')? Session::get('cart') : null;
         if(Auth::check()){
             $user = Auth::user();
+            return view('page.checkout',compact('cart','user'));
         }
-        return view('page.checkout',compact('cart','user'));
+        else 
+            return view('page.checkout',compact('cart'));
     }
     
     public function postCheckout(Request $req){
+        $this->validate($req,
+        [
+            'email'=>'email|unique:user,email',
+            'name'=>'required|max:30',
+            'phone' => 'required',
+            'notes'=>'required',
+        ],
+        [
+            'email.required'=>'Hãy nhập lại email',
+            'email.email'=>'Email chưa đúng định dạng',
+            'name.required'=>'Hãy nhập lại tên',
+            'phone.required'=>'Hãy nhập lại số điện thoại',
+            'notes.required'=>'Hãy nhập thêm ghi chú',
+
+        ]);
         $cart =Session::get('cart');
         $customer = new Customer;
         $customer->name = $req->name;

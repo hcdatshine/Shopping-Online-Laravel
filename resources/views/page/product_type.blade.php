@@ -48,9 +48,9 @@
                                         <p class="single-item-price">
                                             @if($item->promotion_price!=0)
                                             <span class="flash-del">{{ number_format($item->unit_price) }}</span>
-                                            <span class="flash-sale">{{ number_format($item->promotion_price) }} đồng</span>
+                                            <span class="flash-sale">{{ number_format($item->promotion_price) }} đ</span>
                                             @else
-                                            <span class="flash-sale">{{ number_format($item->unit_price) }} đồng</span>
+                                            <span class="flash-sale">{{ number_format($item->unit_price) }} đ</span>
                                             @endif
                                         </p>
                                     </div>
@@ -90,9 +90,9 @@
                                         <p class="single-item-price">
                                             @if($item->promotion_price!=0)
                                             <span class="flash-del">{{ number_format($item->unit_price) }}</span>
-                                            <span class="flash-sale">{{ number_format($item->promotion_price) }} đồng</span>
+                                            <span class="flash-sale">{{ number_format($item->promotion_price) }} đ</span>
                                             @else
-                                            <span class="flash-sale">{{ number_format($item->unit_price) }} đồng</span>
+                                            <span class="flash-sale">{{ number_format($item->unit_price) }} đ</span>
                                             @endif
                                         </p>
                                     </div>
