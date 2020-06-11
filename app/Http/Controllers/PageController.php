@@ -85,7 +85,10 @@ class PageController extends Controller
 
     public function getCheckout(){
         $cart = Session::has('cart')? Session::get('cart') : null;
-        return view('page.checkout',compact('cart'));
+        if(Auth::check()){
+            $user = Auth::user();
+        }
+        return view('page.checkout',compact('cart','user'));
     }
     
     public function postCheckout(Request $req){
@@ -200,7 +203,6 @@ class PageController extends Controller
         $user->phone = $req->phone;
         $user->address = $req->address;
         $user->save();
-        // dd($user);
         return redirect()->route('login')->with('thongbao','Đăng kí thành công');
     }
 

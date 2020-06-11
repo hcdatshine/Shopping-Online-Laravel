@@ -26,7 +26,7 @@
 
                     <div class="form-block">
                         <label for="name">Họ tên*</label>
-                        <input type="text" id="name" name='name' placeholder="Họ tên" required>
+                    <input type="text" id="name" name='name' value="{{$user->name}}" placeholder="Họ tên" required>
                     </div>
                     <div class="form-block">
                         <label>Giới tính </label>
@@ -37,18 +37,18 @@
 
                     <div class="form-block">
                         <label for="email">Email*</label>
-                        <input type="email" id="email" name='email' required placeholder="expample@gmail.com">
+                        <input type="email" id="email" name='email' value="{{$user->email}}" required placeholder="expample@gmail.com">
                     </div>
 
                     <div class="form-block">
                         <label for="adress">Địa chỉ*</label>
-                        <input type="text" id="address" name='address' placeholder="Street Address" required>
+                        <input type="text" id="address" name='address' value="{{$user->address}}"  placeholder="Street Address" required>
                     </div>
                     
 
                     <div class="form-block">
                         <label for="phone">Điện thoại*</label>
-                        <input type="text" id="phone" name='phone' required>
+                        <input type="text" id="phone" name='phone' value="{{$user->phone}}" required>
                     </div>
                     
                     <div class="form-block">
