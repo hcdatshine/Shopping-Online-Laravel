@@ -7,7 +7,7 @@
          <div class="box-header">
             <h3 class="box-title">Data Table With Full Features</h3>
             <div class="box-header col-sm-12">
-               <a class="btn btn-success" data-toggle="modal" data-target="#myModalAdd">Add Product</a>
+               <a class="btn btn-success" data-toggle="modal" data-target="#myModalAdd">Add Product Flash Sale</a>
             </div>
          </div>
          <!-- /.box-header -->
@@ -50,25 +50,23 @@
                         <thead>
                            <tr role="row">
                               <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 51px;">ID</th>
-                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 150px;">Name</th>
-                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 100px;">Phone Number</th>
-                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 250px;">Address</th>
-                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 200px;">Email</th>
+                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 150px;">Product ID</th>
+                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 300px;">Flash Sale ID</th>
+                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 250px;">Discount Percent</th>
                               <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 150px;">Action</th>
                            </tr>
                         </thead>
                         <tbody>
-                           @foreach($users as $item)
+                           @foreach($productflashsales as $item)
                            <tr role="row" class="odd">
                               <td class="sorting_1">{{ $item->id }}</td>
-                              <td>{{ $item->name }}</td>
-                              <td>{{ $item->phone}}</td>
-                              <td>{{ $item->address}}</td>
-                              <td>{{ $item->email}}</td>
+                              <td>{{ $item->product_id }}</td>
+                              <td>{{ $item->flash_sale_id}}</td>
+                              <td>{{ $item->discount_percent}}</td>
                               <td>
                                  <span>
-                                 <a class="btn btn-success" href="{{route('user.edit',$item->id)}}"> Edit </a>
-                                 <a class="btn btn-danger" href="{{route('user.delete',$item->id)}}"> Delete </a>
+                                 <a class="btn btn-success" href="{{route('productflashsale.edit',$item->id)}}"> Edit </a>
+                                 <a class="btn btn-danger" href="{{route('productflashsale.delete',$item->id)}}"> Delete </a>
                                  </span>
                               </td>
                            </tr>
@@ -79,10 +77,10 @@
                </div>
                <div class="row">
                   <div class="col-sm-5">
-                     <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">Showing 1 to 10 of {{count($users)}} entries</div>
+                     <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">Showing 1 to 10 of {{count($productflashsales)}} entries</div>
                   </div>
                   <div class="col-sm-7">
-                     {!! $users -> links() !!}
+                     {!! $productflashsales -> links() !!}
                   </div>
                </div>
             </div>
@@ -98,39 +96,42 @@
                      <h4 class="modal-title">Modal Header</h4>
                   </div>
                   <div class="modal-body">
-                     <form action="{{route('user.add')}}" method="POST" enctype='multipart/form-data'>
-                        {{ csrf_field() }}
+                    <form method="POST" action="{{route('productflashsale.add')}}"  enctype='multipart/form-data'>
+                        {{ csrf_field() }} 
                         <div class="form-group">
-                           <label>User Name</label>
-                           <br>
-                           <input type="text" name="name" placeholder="Nhập tên người dùng" style="width:100%; height:40px" required>
-                           <br>
-                           <label>Phone Number</label>
-                           <br>
-                           <input type="text" name="phone" placeholder="Nhập số điện thoại" style="width:100%; height:40px">
-                           <br>
-                           <label>Address</label>
-                           <br>
-                           <input type="text" name="address" placeholder="Nhập địa chỉ " style="width:100%; height:40px">
-                           <br>
-                           <label>Email</label>
-                           <br>
-                           <input type="text" name="email" placeholder="Nhập email" style="width:100%; height:40px" required>
-                           <br>
-                           <div class="form-block">
-                               <label for="password">Password*</label>
-                               <br>
-                               <input type="password" name="password" placeholder="Nhập mật khẩu" required style="width:100%; height:40px">
-                           </div>
-                           <div class="form-block">
-                               <label for="password">Re password*</label>
-                               <br>
-                               <input type="password" name="reset_password" placeholder="Nhập lại mật khẩu" required style="width:100%; height:40px">
-                           </div>
-                               <br>
+                            <h1>Thêm Sản Phẩm Product Flash Sale</h1>
+                            <br>
+                            <label>Category</label>
+                            <br>
+                            <select id="categoryId" onchange="selectCategory()" class="form-control">
+                               @foreach ($category as $item)
+                               <option value="{{ $item->id }}">{{ $item->name }}</option>
+                               @endforeach
+                            </select>
+                            <br>
+                            <label>Product</label>
+                            <br>
+                            <select name="product_id" id="productId" class="form-control">
+                                @foreach($category[0]->product as $item) 
+                                 <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                @endforeach
+                            </select>
+                            <br>
+                            <label>Flash Sale</label>
+                            <br>
+                            <select name="flash_sale_id" class="form-control">
+                               @foreach ($flashsale as $item)
+                               <option value="{{ $item->id }}">{{ $item->name }}</option>
+                               @endforeach
+                            </select>
+                            <br>
+                            <label>Nhập giá Sale</label>
+                            <br>
+                            <input type="text" placeholder="Nhập giá Sale, 10% thì nhập 10" class="form-control" name="discount_percent" >
+                            <br>
                         </div>
-                        <button type="submit" class="btn btn-success"> Submit </button>
-                     </form>
+                        <button type="submit" class="btn btn-primary">Thêm Sản phẩm Sale</button>
+                    </form>
                   </div>
                   <div class="modal-footer">
                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -142,3 +143,21 @@
    </div>
 </section>
 @stop
+<script>
+let category = <?= json_encode($category) ?>;
+// console.log(category);
+
+function showProduct(product) {
+    console.log(product)
+    $("#productId").empty();
+    product.forEach( function (a) {
+        $("#productId").append('<option value="'+a['id']+'">'+ a['name'] +'</option>')
+    })
+}
+
+function selectCategory() {
+    let category_id = $("#categoryId").val()
+    let product = category.find(x => x["id"] == category_id).product;
+    showProduct(product);
+}
+</script>

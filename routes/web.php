@@ -146,4 +146,20 @@ Route::group(['prefix' => 'admin','middleware' => 'authAdmin'],function() {
 
         Route::get('delete/{id}','UserController@deleteUser')->name('user.delete');
     });
+
+    Route::group(['prefix' => 'flashsale'],function() {
+        Route::get('/','FlashSaleController@index')->name('flashsale.index');
+        Route::post('add','FlashSaleController@getAdd')->name('flashsale.add');
+        Route::get('edit/{id}','FlashSaleController@getEdit');
+        Route::post('edit/{id}','FlashSaleController@postEdit')->name('flashsale.edit');
+        Route::get('delete/{id}','FlashSaleController@delete')->name('flashsale.delete');
+    });
+
+    Route::group(['prefix' => 'productflashsale'],function() {
+        Route::get('/','ProductFlashSaleController@index')->name('productflashsale.index');
+        Route::post('add','ProductFlashSaleController@getAdd')->name('productflashsale.add');
+        Route::get('edit/{id}','ProductFlashSaleController@getEdit');
+        Route::post('edit/{id}','ProductFlashSaleController@postEdit')->name('productflashsale.edit');
+        Route::get('delete/{id}','ProductFlashSaleController@delete')->name('productflashsale.delete');
+    });
 });

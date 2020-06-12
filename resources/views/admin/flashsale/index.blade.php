@@ -7,7 +7,7 @@
          <div class="box-header">
             <h3 class="box-title">Data Table With Full Features</h3>
             <div class="box-header col-sm-12">
-               <a class="btn btn-success" data-toggle="modal" data-target="#myModalAdd">Add Product</a>
+               <a class="btn btn-success" data-toggle="modal" data-target="#myModalAdd">Add Flash Sale</a>
             </div>
          </div>
          <!-- /.box-header -->
@@ -51,24 +51,24 @@
                            <tr role="row">
                               <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 51px;">ID</th>
                               <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 150px;">Name</th>
-                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 100px;">Phone Number</th>
-                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 250px;">Address</th>
-                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 200px;">Email</th>
+                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 250px;">Description</th>
+                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 150px;">Start Time</th>
+                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 150px;">End Time</th>
                               <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 150px;">Action</th>
                            </tr>
                         </thead>
                         <tbody>
-                           @foreach($users as $item)
+                           @foreach($flashsales as $item)
                            <tr role="row" class="odd">
                               <td class="sorting_1">{{ $item->id }}</td>
                               <td>{{ $item->name }}</td>
-                              <td>{{ $item->phone}}</td>
-                              <td>{{ $item->address}}</td>
-                              <td>{{ $item->email}}</td>
+                              <td>{{ $item->description}}</td>
+                              <td>{{ $item->start}}</td>
+                              <td>{{ $item->end}}</td>
                               <td>
                                  <span>
-                                 <a class="btn btn-success" href="{{route('user.edit',$item->id)}}"> Edit </a>
-                                 <a class="btn btn-danger" href="{{route('user.delete',$item->id)}}"> Delete </a>
+                                 <a class="btn btn-success" href="{{route('flashsale.edit',$item->id)}}"> Edit </a>
+                                 <a class="btn btn-danger" href="{{route('flashsale.delete',$item->id)}}"> Delete </a>
                                  </span>
                               </td>
                            </tr>
@@ -79,10 +79,10 @@
                </div>
                <div class="row">
                   <div class="col-sm-5">
-                     <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">Showing 1 to 10 of {{count($users)}} entries</div>
+                     <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">Showing 1 to 10 of {{count($flashsales)}} entries</div>
                   </div>
                   <div class="col-sm-7">
-                     {!! $users -> links() !!}
+                     {!! $flashsales -> links() !!}
                   </div>
                </div>
             </div>
@@ -98,39 +98,29 @@
                      <h4 class="modal-title">Modal Header</h4>
                   </div>
                   <div class="modal-body">
-                     <form action="{{route('user.add')}}" method="POST" enctype='multipart/form-data'>
-                        {{ csrf_field() }}
+                    <form method="POST" action="{{route('flashsale.add')}}"  enctype='multipart/form-data'>
+                        {{ csrf_field() }} 
                         <div class="form-group">
-                           <label>User Name</label>
-                           <br>
-                           <input type="text" name="name" placeholder="Nhập tên người dùng" style="width:100%; height:40px" required>
-                           <br>
-                           <label>Phone Number</label>
-                           <br>
-                           <input type="text" name="phone" placeholder="Nhập số điện thoại" style="width:100%; height:40px">
-                           <br>
-                           <label>Address</label>
-                           <br>
-                           <input type="text" name="address" placeholder="Nhập địa chỉ " style="width:100%; height:40px">
-                           <br>
-                           <label>Email</label>
-                           <br>
-                           <input type="text" name="email" placeholder="Nhập email" style="width:100%; height:40px" required>
-                           <br>
-                           <div class="form-block">
-                               <label for="password">Password*</label>
-                               <br>
-                               <input type="password" name="password" placeholder="Nhập mật khẩu" required style="width:100%; height:40px">
-                           </div>
-                           <div class="form-block">
-                               <label for="password">Re password*</label>
-                               <br>
-                               <input type="password" name="reset_password" placeholder="Nhập lại mật khẩu" required style="width:100%; height:40px">
-                           </div>
-                               <br>
+                            <h1>Thêm Flash Sale</h1>
+                            <label>Tên Flash Sale</label>
+                            <br>
+                            <input type="text"class="form-control" name="name" >
+                            <br>
+                            <label>Mô Tả</label>
+                            <br>
+                            <input type="text"class="form-control" name="description" >
+                            <br>
+                            <label for="start">Start (date and time):</label>
+                            <br>
+                            <input type="datetime-local" id="start" name="start">
+                            <br>
+                            <label for="start">End (date and time):</label>
+                            <br>
+                            <input type="datetime-local" id="end" name="end">
+                            <br>
                         </div>
-                        <button type="submit" class="btn btn-success"> Submit </button>
-                     </form>
+                        <button type="submit" class="btn btn-primary">Tạo</button>
+                    </form>
                   </div>
                   <div class="modal-footer">
                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

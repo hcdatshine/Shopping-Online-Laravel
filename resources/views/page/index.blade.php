@@ -28,6 +28,54 @@
 <div class="main-content">
 <div class="space60">&nbsp;</div>
 <div class="row">
+    @if($end_flash_sale)
+    <div class="col-sm-12">
+        <div class="flash-sale-products-list">
+            <h6><img src="/source/image/flashsale.png"></h6>
+            <div id="countdown"></div>
+            <div class="beta-products-details">
+                <p class="pull-left">Có {{count($new_product)}} sản phẩm mới</p>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="row">
+                @foreach ($product_flash_sales as $item)
+                <?php
+                $product = $item->product;
+                ?>
+                <div class="col-sm-3">
+                    <div class="single-item" style="margin-top:20px">
+                        @if($product->promotion_price!=0)
+                        <div class="ribbon-wrapper"><div class="ribbon sale">Sale</div></div>
+                        @endif
+                        <div class="single-item-header">
+                        <a href="{{route('sanpham',$product->id)}}"><img src="source/image/product/{{$product->image}}" alt="" height="250px"></a>
+                        </div>
+                        <div class="single-item-body">
+                            <p class="single-item-title">{{$product->name}}</p>
+                            <p class="single-item-price">
+                                @if($product->promotion_price!=0)
+                                <span class="flash-del">{{ number_format($product->unit_price*(100-$item->discount_percent)/100) }}</span>
+                                <span class="flash-sale">{{ number_format($product->promotion_price) }} đ</span>
+                                @else
+                                <span class="flash-sale">{{ number_format($product->unit_price*(100-$item->discount_percent)/100) }} đ</span>
+                                @endif
+                            </p>
+                        </div>
+                        <div class="single-item-caption">
+                            <a class="add-to-cart pull-left" href="{{route('themgiohang',$product->id)}}"><i class="fa fa-shopping-cart"></i></a>
+                            <a class="beta-btn primary" href="{{route('sanpham',$product->id)}}">Chi tiết<i class="fa fa-chevron-right"></i></a>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+            <div class="row">{{ $product_flash_sales -> links() }}</div>
+        </div> <!-- .beta-products-list -->
+
+        <div class="space50">&nbsp;</div>
+    @endif
     <div class="col-sm-12">
         <div class="beta-products-list">
             <h4>Sản Phẩm Mới</h4>
@@ -109,4 +157,15 @@
 </div> <!-- .main-content -->
 </div> <!-- #content -->
 
+@endsection
+@section('script')
+    <script>
+        $(function($){
+            let date = "<?= $end_flash_sale ?>";
+            console.log(date);
+            $('#countdown').countdown(date, function(event) {
+                $(this).html(event.strftime('%D days %H:%M:%S'));
+            });
+        })
+    </script>
 @endsection

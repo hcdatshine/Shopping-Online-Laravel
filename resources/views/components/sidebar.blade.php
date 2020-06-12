@@ -30,6 +30,16 @@
             <i class="fa fa-user" aria-hidden="true"></i> <span>User</span>
           </a>
         </li>
+        <li class="{{ (\Request::route()->getName() == 'user.flashsale') ? 'active' : '' }}">
+          <a href="{{ route('flashsale.index') }}">
+            <i class="fa fa-user" aria-hidden="true"></i> <span>Flash Sale</span>
+          </a>
+        </li>
+        <li class="{{ (\Request::route()->getName() == 'productflashsale.index') ? 'active' : '' }}">
+          <a href="{{ route('productflashsale.index') }}">
+            <i class="fa fa-user" aria-hidden="true"></i> <span>Product Flash Sale</span>
+          </a>
+        </li>
     </section>
     <!-- /.sidebar -->
   </aside>

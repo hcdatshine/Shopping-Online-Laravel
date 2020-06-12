@@ -15,6 +15,7 @@
 	<link rel="stylesheet" title="style" href="source/assets/dest/css/style.css">
 	<link rel="stylesheet" href="source/assets/dest/css/animate.css">
 	<link rel="stylesheet" title="style" href="source/assets/dest/css/huong-style.css">
+	<link href="source/assets/dest/css/timeTo.css" type="text/css" rel="stylesheet"/>
 </head>
 <body>
 	@include('header')
@@ -35,6 +36,8 @@
 	<script src="source/assets/dest/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
 	<script src="source/assets/dest/js/waypoints.min.js"></script>
 	<script src="source/assets/dest/js/wow.min.js"></script>
+	<script src="source/assets/dest/js/jquery.countdown.js"></script>
+
 	<!--customjs-->
 	<script src="source/assets/dest/js/custom2.js"></script>
 	<script>

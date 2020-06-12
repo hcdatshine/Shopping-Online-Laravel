@@ -17,7 +17,7 @@ class CreateProductsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->integer('id_type');
-            $table->longtext('description');
+            $table->longtext('description')->nullable();
             $table->integer('unit_price');
             $table->integer('promotion_price')->default(0);
             $table->integer('solded')->default(0);

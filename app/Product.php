@@ -15,4 +15,8 @@ class Product extends Model
     public function bill_detail(){
         return $this->hasMany('App\BillDetail','id_product','id');
     }
+
+    public function flashsales(){
+        return $this->belongsToMany('App\FlashSale','product_flashsale');
+    }
 }

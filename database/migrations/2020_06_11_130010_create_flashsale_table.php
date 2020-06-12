@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBillsTable extends Migration
+class CreateFlashsaleTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateBillsTable extends Migration
      */
     public function up()
     {
-        Schema::create('bills', function (Blueprint $table) {
+        Schema::create('flashsale', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('id_customer');
-            $table->date('date_order');
-            $table->float('total');
-            $table->string('payment');
-            $table->string('note')->nullable();
+            $table->string('name');
+            $table->longText('description')->nullable();
+            $table->dateTime('start');
+            $table->dateTime('end');
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ class CreateBillsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bills');
+        Schema::dropIfExists('flashsale');
     }
 }

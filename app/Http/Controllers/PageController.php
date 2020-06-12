@@ -12,16 +12,27 @@ use App\Customer;
 use App\Bill;
 use App\BillDetail;
 use App\User;
+use Carbon\Carbon;
 use Hash;
+use App\FlashSale;
 use Illuminate\Support\Facades\Auth;
 
 class PageController extends Controller
 {
     public function getIndex(){
         $slide = Slide::all();
+        $now = Carbon::now();
         $new_product = Product::where('new',1)->paginate(4);
         $sale_product= Product::where('promotion_price','<>',0)->take(4)->get();
-        return view('page.index',compact('slide','new_product','sale_product'));
+        $flash_sale = FlashSale::where('end','>=',$now)->orderBy('start','asc')->with('productFlashSales')->first();
+        $product_flash_sales = $flash_sale->productFlashSales()->with('product')->paginate(4);
+        // dd($product_flash_sales);
+        $end_flash_sale = NULL;
+        if ($flash_sale) {
+            $end_flash_sale = Carbon::parse($flash_sale->end)->format('Y/m/d H:i:s');
+        }
+        // dd($end_flash_sale);
+        return view('page.index',compact('end_flash_sale','product_flash_sales','product','flash_sale','slide','new_product','sale_product'));
     }
     //21/04 dang lam sp voi sp tuong tu
     public function getAbout(){
@@ -96,7 +107,7 @@ class PageController extends Controller
     public function postCheckout(Request $req){
         $this->validate($req,
         [
-            'email'=>'email|unique:user,email',
+            'email'=>'required|email|',
             'name'=>'required|max:30',
             'phone' => 'required',
             'notes'=>'required',
@@ -106,7 +117,7 @@ class PageController extends Controller
             'email.email'=>'Email chưa đúng định dạng',
             'name.required'=>'Hãy nhập lại tên',
             'phone.required'=>'Hãy nhập lại số điện thoại',
-            'notes.required'=>'Hãy nhập thêm ghi chú',
+            'note.required'=>'Hãy nhập thêm ghi chú',
 
         ]);
         $cart =Session::get('cart');
