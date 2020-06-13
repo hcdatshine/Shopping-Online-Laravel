@@ -23,138 +23,140 @@
 </div>
 <!--slider-->
 </div>
-<div class="container">
+
 <div id="content" class="space-top-none">
-<div class="main-content">
-<div class="space60">&nbsp;</div>
-<div class="row">
-    @if($end_flash_sale)
-    <div class="col-sm-12">
-        <div class="flash-sale-products-list">
-            <h6><img src="/source/image/flashsale.png"></h6>
-            <div id="countdown"></div>
-            <div class="beta-products-details">
-                <p class="pull-left">Có {{count($new_product)}} sản phẩm mới</p>
-                <div class="clearfix"></div>
-            </div>
-
+    <div class="container">
+        <div class="main-content">
+            <div class="space60">&nbsp;</div>
             <div class="row">
-                @foreach ($product_flash_sales as $item)
-                <?php
-                $product = $item->product;
-                ?>
-                <div class="col-sm-3">
-                    <div class="single-item" style="margin-top:20px">
-                        @if($product->promotion_price!=0)
-                        <div class="ribbon-wrapper"><div class="ribbon sale">Sale</div></div>
-                        @endif
-                        <div class="single-item-header">
-                        <a href="{{route('sanpham',$product->id)}}"><img src="source/image/product/{{$product->image}}" alt="" height="250px"></a>
-                        </div>
-                        <div class="single-item-body">
-                            <p class="single-item-title">{{$product->name}}</p>
-                            <p class="single-item-price">
-                                @if($product->promotion_price!=0)
-                                <span class="flash-del">{{ number_format($product->unit_price*(100-$item->discount_percent)/100) }}</span>
-                                <span class="flash-sale">{{ number_format($product->promotion_price) }} đ</span>
-                                @else
-                                <span class="flash-sale">{{ number_format($product->unit_price*(100-$item->discount_percent)/100) }} đ</span>
-                                @endif
-                            </p>
-                        </div>
-                        <div class="single-item-caption">
-                            <a class="add-to-cart pull-left" href="{{route('themgiohang',$product->id)}}"><i class="fa fa-shopping-cart"></i></a>
-                            <a class="beta-btn primary" href="{{route('sanpham',$product->id)}}">Chi tiết<i class="fa fa-chevron-right"></i></a>
+                @if($end_flash_sale)
+                <div class="col-sm-12">
+                    <div class="flash-sale-products-list">
+                        <div><img src="/source/image/flashsale.png" style="float: left"> <p id="countdown" style="float: left; margin-left: 20px; margin-top: 5px; font-size: 18px;"></p></div>
+                        {{-- <div id="countdown"></div> --}}
+                        <div class="beta-products-details" style="clear: both">
+                            <p class="pull-left">Có {{count($new_product)}} sản phẩm mới</p>
                             <div class="clearfix"></div>
                         </div>
-                    </div>
+
+                        <div class="row">
+                            @foreach ($product_flash_sales as $item)
+                            <?php
+                            $product = $item->product;
+                            ?>
+                            <div class="col-sm-3">
+                                <div class="single-item" style="margin-top:20px">
+                                    @if($product->promotion_price!=0)
+                                    <div class="ribbon-wrapper"><div class="ribbon sale">Sale</div></div>
+                                    @endif
+                                    <div class="single-item-header">
+                                    <a href="{{route('sanpham',$product->id)}}"><img src="source/image/product/{{$product->image}}" alt="" height="250px"></a>
+                                    </div>
+                                    <div class="single-item-body">
+                                        <p class="single-item-title">{{$product->name}}</p>
+                                        <p class="single-item-price">
+                                            @if($product->promotion_price!=0)
+                                            <span class="flash-del">{{ number_format($product->unit_price*(100-$item->discount_percent)/100) }}</span>
+                                            <span class="flash-sale">{{ number_format($product->promotion_price) }} đ</span>
+                                            @else
+                                            <span class="flash-sale">{{ number_format($product->unit_price*(100-$item->discount_percent)/100) }} đ</span>
+                                            @endif
+                                        </p>
+                                    </div>
+                                    <div class="single-item-caption">
+                                        <a class="add-to-cart pull-left" href="{{route('themgiohang',$product->id)}}"><i class="fa fa-shopping-cart"></i></a>
+                                        <a class="beta-btn primary" href="{{route('sanpham',$product->id)}}">Chi tiết<i class="fa fa-chevron-right"></i></a>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>
+                        <div class="row">{{ $product_flash_sales -> links() }}</div>
+                    </div> <!-- .beta-products-list -->
+
+                    <div class="space50">&nbsp;</div>
                 </div>
-                @endforeach
-            </div>
-            <div class="row">{{ $product_flash_sales -> links() }}</div>
-        </div> <!-- .beta-products-list -->
-
-        <div class="space50">&nbsp;</div>
-    @endif
-    <div class="col-sm-12">
-        <div class="beta-products-list">
-            <h4>Sản Phẩm Mới</h4>
-            <div class="beta-products-details">
-                <p class="pull-left">Có {{count($new_product)}} sản phẩm mới</p>
-                <div class="clearfix"></div>
-            </div>
-
-            <div class="row">
-                @foreach ($new_product as $product)
-                <div class="col-sm-3">
-                    <div class="single-item" style="margin-top:20px">
-                        @if($product->promotion_price!=0)
-                        <div class="ribbon-wrapper"><div class="ribbon sale">Sale</div></div>
-                        @endif
-                        <div class="single-item-header">
-                        <a href="{{route('sanpham',$product->id)}}"><img src="source/image/product/{{$product->image}}" alt="" height="250px"></a>
-                        </div>
-                        <div class="single-item-body">
-                            <p class="single-item-title">{{$product->name}}</p>
-                            <p class="single-item-price">
-                                @if($product->promotion_price!=0)
-                                <span class="flash-del">{{ number_format($product->unit_price) }}</span>
-                                <span class="flash-sale">{{ number_format($product->promotion_price) }} đ</span>
-                                @else
-                                <span class="flash-sale">{{ number_format($product->unit_price) }} đ</span>
-                                @endif
-                            </p>
-                        </div>
-                        <div class="single-item-caption">
-                            <a class="add-to-cart pull-left" href="{{route('themgiohang',$product->id)}}"><i class="fa fa-shopping-cart"></i></a>
-                            <a class="beta-btn primary" href="{{route('sanpham',$product->id)}}">Chi tiết<i class="fa fa-chevron-right"></i></a>
+                @endif
+                <div class="col-sm-12">
+                    <div class="beta-products-list">
+                        <h4>Sản Phẩm Mới</h4>
+                        <div class="beta-products-details">
+                            <p class="pull-left">Có {{count($new_product)}} sản phẩm mới</p>
                             <div class="clearfix"></div>
                         </div>
-                    </div>
-                </div>
-                @endforeach
-            </div>
-            <div class="row">{{ $new_product -> links() }}</div>
-        </div> <!-- .beta-products-list -->
 
-        <div class="space50">&nbsp;</div>
+                        <div class="row">
+                            @foreach ($new_product as $product)
+                            <div class="col-sm-3">
+                                <div class="single-item" style="margin-top:20px">
+                                    @if($product->promotion_price!=0)
+                                    <div class="ribbon-wrapper"><div class="ribbon sale">Sale</div></div>
+                                    @endif
+                                    <div class="single-item-header">
+                                    <a href="{{route('sanpham',$product->id)}}"><img src="source/image/product/{{$product->image}}" alt="" height="250px"></a>
+                                    </div>
+                                    <div class="single-item-body">
+                                        <p class="single-item-title">{{$product->name}}</p>
+                                        <p class="single-item-price">
+                                            @if($product->promotion_price!=0)
+                                            <span class="flash-del">{{ number_format($product->unit_price) }}</span>
+                                            <span class="flash-sale">{{ number_format($product->promotion_price) }} đ</span>
+                                            @else
+                                            <span class="flash-sale">{{ number_format($product->unit_price) }} đ</span>
+                                            @endif
+                                        </p>
+                                    </div>
+                                    <div class="single-item-caption">
+                                        <a class="add-to-cart pull-left" href="{{route('themgiohang',$product->id)}}"><i class="fa fa-shopping-cart"></i></a>
+                                        <a class="beta-btn primary" href="{{route('sanpham',$product->id)}}">Chi tiết<i class="fa fa-chevron-right"></i></a>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>
+                        <div class="row">{{ $new_product -> links() }}</div>
+                    </div> <!-- .beta-products-list -->
 
-        <div class="beta-products-list">
-            <h4>Sản phẩm khuyến mại</h4>
-            <div class="beta-products-details">
-                <p class="pull-left">Có {{count($sale_product)}} sản phẩm khuyến mại</p>
-                <div class="clearfix"></div>
-            </div>
-            <div class="row">
-                @foreach($sale_product as $item)
-                <div class="col-sm-3">
-                    <div class="single-item" style="margin-top:20px">
-                        <div class="ribbon-wrapper"><div class="ribbon sale">Sale</div></div>
-                        <div class="single-item-header">
-                        <a href="{{route('sanpham',$item->id)}}"><img src="source/image/product/{{ $item->image }}" alt="" height="250px"></a>
-                        </div>
-                        <div class="single-item-body">
-                        <p class="single-item-title">{{$item->name}}</p>
-                            <p class="single-item-price">
-                                <span class="flash-del">{{ number_format($item->unit_price) }}</span>
-                                <span class="flash-sale">{{ number_format($item->promotion_price) }} đ</span>
-                            </p>
-                        </div>
-                        <div class="single-item-caption">
-                            <a class="add-to-cart pull-left" href="{{route('themgiohang',$item->id)}}"><i class="fa fa-shopping-cart"></i></a>
-                            <a class="beta-btn primary" href="{{route('sanpham',$item->id)}}">Chi tiết <i class="fa fa-chevron-right"></i></a>
+                    <div class="space50">&nbsp;</div>
+
+                    <div class="beta-products-list">
+                        <h4>Sản phẩm khuyến mại</h4>
+                        <div class="beta-products-details">
+                            <p class="pull-left">Có {{count($sale_product)}} sản phẩm khuyến mại</p>
                             <div class="clearfix"></div>
                         </div>
-                    </div>
+                        <div class="row">
+                            @foreach($sale_product as $item)
+                            <div class="col-sm-3">
+                                <div class="single-item" style="margin-top:20px">
+                                    <div class="ribbon-wrapper"><div class="ribbon sale">Sale</div></div>
+                                    <div class="single-item-header">
+                                    <a href="{{route('sanpham',$item->id)}}"><img src="source/image/product/{{ $item->image }}" alt="" height="250px"></a>
+                                    </div>
+                                    <div class="single-item-body">
+                                    <p class="single-item-title">{{$item->name}}</p>
+                                        <p class="single-item-price">
+                                            <span class="flash-del">{{ number_format($item->unit_price) }}</span>
+                                            <span class="flash-sale">{{ number_format($item->promotion_price) }} đ</span>
+                                        </p>
+                                    </div>
+                                    <div class="single-item-caption">
+                                        <a class="add-to-cart pull-left" href="{{route('themgiohang',$item->id)}}"><i class="fa fa-shopping-cart"></i></a>
+                                        <a class="beta-btn primary" href="{{route('sanpham',$item->id)}}">Chi tiết <i class="fa fa-chevron-right"></i></a>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>
+                    {{-- <div class="row">{{ $sale_product -> links() }}</div> --}}
+                    </div> <!-- .beta-pđồngcts-list -->
                 </div>
-                @endforeach
-            </div>
-        {{-- <div class="row">{{ $sale_product -> links() }}</div> --}}
-        </div> <!-- .beta-pđồngcts-list -->
+            </div> <!-- end section with sidebar and main content -->
+        </div> <!-- .main-content -->
     </div>
-</div> <!-- end section with sidebar and main content -->
-
-</div> <!-- .main-content -->
 </div> <!-- #content -->
 
 @endsection

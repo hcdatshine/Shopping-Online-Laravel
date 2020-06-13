@@ -286,7 +286,7 @@ text-shadow:none;
 .tp-caption a {
 color:#ff7302;
 text-shadow:none;
--webkit-transition:all 0.2s ease-out;
+transition:all 0.2s ease-out;
 -moz-transition:all 0.2s ease-out;
 -o-transition:all 0.2s ease-out;
 -ms-transition:all 0.2s ease-out;
@@ -862,7 +862,7 @@ border-style:none;
 
 	@media only screen and (min-width: 480px) and (max-width: 767px) {
 		.tp-simpleresponsive  .button	{	padding:4px 8px 3px; line-height:25px !important; font-size:11px !important;font-weight:normal;	}
-		.tp-simpleresponsive  a.button { -webkit-transition: none; -moz-transition: none; -o-transition: none; -ms-transition: none;	 }
+		.tp-simpleresponsive  a.button { transition: none; -moz-transition: none; -o-transition: none; -ms-transition: none;	 }
 
 
 	}
@@ -1049,7 +1049,7 @@ border-style:none;
 
 .tp-bullets.simplebullets.navbar						{ 	border:1px solid #666; border-bottom:1px solid #444; background:url(../assets/boxed_bgtile.png); height:40px; padding:0px 10px; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px ;}
 
-.tp-bullets.simplebullets.navbar-old					{ 	 background:url(../assets/navigdots_bgtile.png); height:35px; padding:0px 10px; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px ;}
+/* .tp-bullets.simplebullets.navbar-old					{ 	 background:url(../assets/navigdots_bgtile.png); height:35px; padding:0px 10px; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px ;} */
 
 
 .tp-bullets.simplebullets.round .bullet					{	cursor:pointer; position:relative;	background:url(../assets/bullet.png) no-Repeat top left;	width:20px;	height:20px;  margin-right:0px; float:left; margin-top:0px; margin-left:3px;}

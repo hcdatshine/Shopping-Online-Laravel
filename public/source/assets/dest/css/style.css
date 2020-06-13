@@ -1836,8 +1836,8 @@ width:80px
 /* ==========================================================================
     11. BETA PRODUCTS DETAILS
 ============================================================================= */
-.flash-sale-products-list h4 {
-}
+/* .flash-sale-products-list h4{
+} */
 
 .beta-products-details {
 font-size:15px;
@@ -1927,7 +1927,7 @@ right:-3px
 .ribbon {
 color:#fff;
 text-align:center;
--webkit-transform:rotate(45deg);
+transform: rotate(45deg);
 -moz-transform:rotate(45deg);
 -ms-transform:rotate(45deg);
 -o-transform:rotate(45deg);
@@ -2352,7 +2352,7 @@ margin-top:25px
 
 .beta-filter-body li {
 display:inline-block;
-float:left;
+/* float: left; */
 height:320px;
 position:relative;
 overflow:hidden;
@@ -4426,7 +4426,7 @@ line-height:40px
 }
 
 .beta-menu-toggle-text {
-float:left;
+/* float:left; */
 margin-top:13px;
 line-height:100%;
 margin-right:10px;
@@ -4713,7 +4713,7 @@ html{overflow-x:hidden;}
 .auto-width-left ul li a{padding:0px;}
 .auto-width-right{width:41%;}
 .auto-width-right ul li a{padding:0px 4px;}
-.pull-left.auto-width:{width:auto!important;}
+.pull-left.auto-width{width:auto!important;}
 .beta-comp from{width:70%!important;}
 a#logo img{max-width:45%!important;}
 .beta-rotator canvas{width:98%!important;}
@@ -4961,7 +4961,7 @@ border-bottom: 10px solid transparent;}
 .isotope.no-transition,
 .isotope.no-transition .isotope-item,
 .isotope .isotope-item.no-transition {
-    -webkit-transition-duration: 0s;
+    transition-duration: 0s;
     -moz-transition-duration: 0s;
     -ms-transition-duration: 0s;
     -o-transition-duration: 0s;
@@ -5068,7 +5068,7 @@ transition: all 0.17s ease-in-out;
     -moz-transition: all 0.17s ease-in-out;
     -webkit-transition: all 0.17s ease-in-out;
     -o-transition: all 0.17s ease-in-out;
-    -webkit-backface-visibility: hidden;}
+    backface-visibility: hidden;}
 .sub-menu{z-index:999;top: 31px;
 transition: all 0.17s ease-in-out;
     -moz-transition: all 0.17s ease-in-out;
