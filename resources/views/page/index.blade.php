@@ -46,21 +46,15 @@
                             ?>
                             <div class="col-sm-3">
                                 <div class="single-item" style="margin-top:20px">
-                                    @if($product->promotion_price!=0)
                                     <div class="ribbon-wrapper"><div class="ribbon sale">Sale</div></div>
-                                    @endif
                                     <div class="single-item-header">
                                     <a href="{{route('sanpham',$product->id)}}"><img src="source/image/product/{{$product->image}}" alt="" height="250px"></a>
                                     </div>
                                     <div class="single-item-body">
                                         <p class="single-item-title">{{$product->name}}</p>
                                         <p class="single-item-price">
-                                            @if($product->promotion_price!=0)
-                                            <span class="flash-del">{{ number_format($product->unit_price*(100-$item->discount_percent)/100) }}</span>
-                                            <span class="flash-sale">{{ number_format($product->promotion_price) }} đ</span>
-                                            @else
+                                            <span class="flash-del">{{ number_format($product->unit_price)}}</span>
                                             <span class="flash-sale">{{ number_format($product->unit_price*(100-$item->discount_percent)/100) }} đ</span>
-                                            @endif
                                         </p>
                                     </div>
                                     <div class="single-item-caption">
