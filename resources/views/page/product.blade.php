@@ -33,7 +33,7 @@
                             <p class="single-item-price">
                                 @if($product_detail->discount_percent != 0)
                                 <span class="flash-del">{{ number_format($product_detail->unit_price) }}</span>
-                                    <span class="flash-sale">{{ number_format($product_detail->unit_price*(100-$product_detail->discount_percent)/100) }} đồng</span>
+                                    <span class="flash-sale">{{ number_format($product_detail->flashsale_price) }} đồng</span>
                                 @else
                                     @if($product_detail->promotion_price!=0)
                                     <span class="flash-del">{{ number_format($product_detail->unit_price) }}</span>
