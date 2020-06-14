@@ -31,11 +31,16 @@
                         <div class="single-item-body">
                             <p class="single-item-title"><h2>{{$product_detail->name}}</h2></p>
                             <p class="single-item-price">
-                                @if($product_detail->promotion_price!=0)
+                                @if($product_detail->discount_percent != 0)
                                 <span class="flash-del">{{ number_format($product_detail->unit_price) }}</span>
-                                <span class="flash-sale">{{ number_format($product_detail->promotion_price) }} đồng</span>
+                                    <span class="flash-sale">{{ number_format($product_detail->unit_price*(100-$product_detail->discount_percent)/100) }} đồng</span>
                                 @else
-                                <span class="flash-sale">{{ number_format($product_detail->unit_price) }} đồng</span>
+                                    @if($product_detail->promotion_price!=0)
+                                    <span class="flash-del">{{ number_format($product_detail->unit_price) }}</span>
+                                    <span class="flash-sale">{{ number_format($product_detail->promotion_price) }} đồng</span>
+                                    @else
+                                    <span class="flash-sale">{{ number_format($product_detail->unit_price) }} đồng</span>
+                                    @endif
                                 @endif
                             </p>
                         </div>
@@ -52,13 +57,6 @@
                         <p>lượng:</p>
                         <div class="single-item-options">
                             <form action="{{route('themgiohang',$product_detail->id)}}" method="GET">
-                                {{-- <select class="wc-select" id="item-quantity" name="qty">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                </select> --}}
                                 <input type="number" id="item-quantity" name="qty" value="1" style="width: 50px; text-align: center" min="1">
                                 <button type="submit" class="add-to-cart"><i class="fa fa-shopping-cart"></i></button>        
                             </form>

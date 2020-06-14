@@ -15,6 +15,7 @@ use App\User;
 use Carbon\Carbon;
 use Hash;
 use App\FlashSale;
+use App\ProductFlashSale;
 use Illuminate\Support\Facades\Auth;
 
 class PageController extends Controller
@@ -66,7 +67,13 @@ class PageController extends Controller
     }
     
     public function getProduct(Request $req){
+        $productflashsales = ProductFlashSale::select()->where('product_id','=',$req->id)->get();
+        // dd(intval($productflashsales[0]->discount_percent));
         $product_detail=Product::where('id',$req->id)->first();
+        if(count($productflashsales)>0){
+            $product_detail['discount_percent'] = intval($productflashsales[0]->discount_percent);
+        }
+        // dd($product_detail);
         $product_related=Product::where('id_type',$product_detail->id_type)->paginate(3);
         $new_product = Product::where('new',1)->take(6)->get();
         $product_best_selling = Product::orderByDesc('solded')->take(6)->get();
