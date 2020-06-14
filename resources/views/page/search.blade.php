@@ -39,6 +39,7 @@
                             <a class="beta-btn primary" href="{{route('sanpham',$item->id)}}">Details <i class="fa fa-chevron-right"></i></a>
                             <div class="clearfix"></div>
                         </div>
+                        <br>
                     </div>
                 </div>
                 @endforeach

@@ -17,7 +17,7 @@
         <form method="POST" action="{{route('flashsale.edit',$editFlashsale->id)}}" enctype="multipart/form-data">
                 {{ csrf_field() }} 
                 <div class="form-group">
-                    <h1>Thêm Flash Sale</h1>
+                    <h1>Sửa Flash Sale</h1>
                     <label>Tên Flash Sale</label>
                     <br>
                     <input type="text"class="form-control" name="name" value="{{$editFlashsale->name}}">

@@ -41,7 +41,7 @@ class ProductFlashSaleController extends Controller
         return redirect()->route('productflashsale.index')->with('message','Sửa thành công');
     }
     
-    public function Delete(){
+    public function Delete($id){
         $product_flash_sale = ProductFlashSale::find($id);
         $product_flash_sale->delete();
         return redirect()->back()->with('message',' Xoá thành công');

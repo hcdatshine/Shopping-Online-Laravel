@@ -25,8 +25,13 @@ class PageController extends Controller
         $new_product = Product::where('new',1)->paginate(4);
         $sale_product= Product::where('promotion_price','<>',0)->take(4)->get();
         $flash_sale = FlashSale::where('end','>=',$now)->orderBy('start','asc')->with('productFlashSales')->first();
-        $product_flash_sales = $flash_sale->productFlashSales()->with('product')->paginate(4);
-        // dd($product_flash_sales);
+        if($flash_sale){
+            $product_flash_sales = $flash_sale->productFlashSales()->with('product')->paginate(4);
+        }
+        else {
+            $product_flash_sales = NULL;
+        }
+        // dd($flash_sale);
         $end_flash_sale = NULL;
         if ($flash_sale) {
             $end_flash_sale = Carbon::parse($flash_sale->end)->format('Y/m/d H:i:s');
@@ -63,8 +68,8 @@ class PageController extends Controller
     public function getProduct(Request $req){
         $product_detail=Product::where('id',$req->id)->first();
         $product_related=Product::where('id_type',$product_detail->id_type)->paginate(3);
-        $new_product = Product::where('new',1)->take(4)->get();
-        $product_best_selling = Product::orderByDesc('solded')->take(4)->get();
+        $new_product = Product::where('new',1)->take(6)->get();
+        $product_best_selling = Product::orderByDesc('solded')->take(6)->get();
         return view('page.product',compact('product_detail','product_related','product_best_selling','new_product'));
     }
 
