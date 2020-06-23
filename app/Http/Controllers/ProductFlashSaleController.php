@@ -12,7 +12,8 @@ use App\ProductFlashSale;
 class ProductFlashSaleController extends Controller
 {
     public function index(){
-        $productflashsales = ProductFlashSale::select()->paginate(10);
+        $productflashsales = ProductFlashSale::select()->with('flashSale','product')->paginate(10);
+        // dd($productflashsales);
         $category = ProductType::with('product')->get();
         $flashsale = FlashSale::all();
         return view('admin/productflashsale/index',compact('productflashsales','flashsale','category'));

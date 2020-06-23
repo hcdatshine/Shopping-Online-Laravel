@@ -50,8 +50,8 @@
                         <thead>
                            <tr role="row">
                               <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 51px;">ID</th>
-                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 150px;">Product ID</th>
-                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 300px;">Flash Sale ID</th>
+                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 150px;">Product Name</th>
+                              <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 300px;">Flash Sale Name</th>
                               <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 250px;">Discount Percent</th>
                               <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 150px;">Action</th>
                            </tr>
@@ -60,8 +60,8 @@
                            @foreach($productflashsales as $item)
                            <tr role="row" class="odd">
                               <td class="sorting_1">{{ $item->id }}</td>
-                              <td>{{ $item->product_id }}</td>
-                              <td>{{ $item->flash_sale_id}}</td>
+                              <td>{{ $item->product->name }}</td>
+                              <td>{{ $item->flashSale->name}}</td>
                               <td>{{ $item->discount_percent}}</td>
                               <td>
                                  <span>
