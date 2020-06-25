@@ -30,7 +30,7 @@
             <i class="fa fa-user" aria-hidden="true"></i> <span>User</span>
           </a>
         </li>
-        <li class="{{ (\Request::route()->getName() == 'user.flashsale') ? 'active' : '' }}">
+        <li class="{{ (\Request::route()->getName() == 'flashsale.index') ? 'active' : '' }}">
           <a href="{{ route('flashsale.index') }}">
             <i class="fa fa-list-alt" aria-hidden="true"></i> <span>Flash Sale</span>
           </a>
