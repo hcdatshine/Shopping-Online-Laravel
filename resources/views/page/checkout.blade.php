@@ -95,7 +95,9 @@
                                             <img width="25%" src="source/image/product/{{$item['item']['image']}}" alt="" class="pull-left">
                                             <div class="media-body">
                                                 <span class="cart-item-title"><p class="your-order-f18">{{$item['item']['name']}}</p></span>
-                                                @if($item['item']['promotion_price']!=0)
+                                                @if($item['item']['sale']!=0)
+                                                <span class="cart-item-amount"><h5>{{ $item['qty'] }}*<span>{{ number_format($item['item']['sale']) }}</h5></span></span>
+                                                @elseif($item['item']['promotion_price']!=0)
                                                 <span class="cart-item-amount"><h5>{{ $item['qty'] }}*<span>{{ number_format($item['item']['promotion_price']) }}</h5></span></span>
                                                 @else 
                                                 <span class="cart-item-amount"><h5>{{ $item['qty'] }}*<span>{{ number_format($item['item']['unit_price']) }}</h5></span></span>

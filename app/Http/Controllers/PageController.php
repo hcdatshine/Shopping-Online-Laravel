@@ -82,6 +82,18 @@ class PageController extends Controller
 
     public function getAddToCart(Request $req,$id){
         $product = Product::find($id);
+        // dd($product);
+        $productflashsales = ProductFlashSale::select()->with('flashSale','product')->where('product_id','=',$product->id)->first();
+        // kiem tra co phai la sp flash sale khong 
+        // dd($productflashsales);
+        if(!is_null($productflashsales) && $productflashsales->flashSale->end>Carbon::now()){
+            $product['sale']=$product->unit_price*(100-intval($productflashsales->discount_percent))/100;
+        }
+        else 
+            $product['sale']=0;
+        // dd($product);
+        //neu co thi luu cai gia sale vao session neu khong out
+        //khi het sale 
         $qty = intval($req->qty);
         if (!$qty) {$qty = 1;}
         $oldCart = Session('cart')?Session::get('cart'):null;

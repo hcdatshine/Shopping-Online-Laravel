@@ -24,8 +24,8 @@ class Cart
 			}
 		}
 		$giohang['qty']++;
-		if($item->flashsale_price){
-			$giohang['price'] = $item->flashsale_price * $giohang['qty'];
+		if($item->sale){
+			$giohang['price'] = $item->sale * $giohang['qty'];
 		}
 		elseif($item->promotion_price){
 			$giohang['price'] = $item->promotion_price * $giohang['qty'];
@@ -35,8 +35,8 @@ class Cart
 		}
 		$this->items[$id] = $giohang;
 		$this->totalQty++;
-		if($item->flashsale_price){
-			$this->totalPrice += $item->flashsale_price;
+		if($item->sale){
+			$this->totalPrice += $item->sale;
 		}elseif($item->promotion_price){
 			$this->totalPrice += $item->promotion_price;
 		}
