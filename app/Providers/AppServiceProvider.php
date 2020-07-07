@@ -50,12 +50,12 @@ class AppServiceProvider extends ServiceProvider
                         $item['sale']=0;
                     }
                     if($item['sale']){
-                        $totalPrice += $item['sale'];
+                        $totalPrice += $item['sale'] * intval($i['qty']);
                     }elseif($product->promotion_price){
-                        $totalPrice += $product->promotion_price;
+                        $totalPrice += $product->promotion_price*intval($i['qty']);
                     }
                     else {
-                        $totalPrice += $product->unit_price;
+                        $totalPrice += $product->unit_price*intval($i['qty']);
                     }
                 }
 

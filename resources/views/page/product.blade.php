@@ -31,9 +31,9 @@
                         <div class="single-item-body">
                             <p class="single-item-title"><h2>{{$product_detail->name}}</h2></p>
                             <p class="single-item-price">
-                                @if($product_detail->discount_percent != 0)
-                                <span class="flash-del">{{ number_format($product_detail->unit_price) }}</span>
-                                    <span class="flash-sale">{{ number_format($product_detail->flashsale_price) }} đồng</span>
+                                @if($product_detail->sale != 0)
+                                    <span class="flash-del">{{ number_format($product_detail->unit_price) }}</span>
+                                    <span class="flash-sale">{{ number_format($product_detail->sale) }} đồng</span>
                                 @else
                                     @if($product_detail->promotion_price!=0)
                                     <span class="flash-del">{{ number_format($product_detail->unit_price) }}</span>

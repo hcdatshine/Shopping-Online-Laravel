@@ -67,12 +67,14 @@ class PageController extends Controller
     }
     
     public function getProduct(Request $req){
-        $productflashsales = ProductFlashSale::select()->where('product_id','=',$req->id)->get();
         // dd(intval($productflashsales[0]->discount_percent));
         $product_detail=Product::where('id',$req->id)->first();
-        if(count($productflashsales)>0){
-            $product_detail['discount_percent'] = intval($productflashsales[0]->discount_percent);
+        $productflashsales = ProductFlashSale::select()->with('flashSale','product')->where('product_id','=',$product_detail->id)->first();
+        if(!is_null($productflashsales) && $productflashsales->flashSale->end>Carbon::now()){
+            $product_detail['sale']=$product_detail->unit_price*(100-intval($productflashsales->discount_percent))/100;
         }
+        else 
+            $product_detail['sale']=0;
         // dd($product_detail);
         $product_related=Product::where('id_type',$product_detail->id_type)->paginate(3);
         $new_product = Product::where('new',1)->take(6)->get();
